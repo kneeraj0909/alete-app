@@ -1,118 +1,65 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import {NavigationContainer, useNavigation} from '@react-navigation/native';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+import {createStackNavigator} from '@react-navigation/stack';
+import Home from './src/screens/Home';
+import Contact from './src/screens/Contact';
+import About from './src/screens/About';
+import Partners from './src/screens/Partners';
+import Dashboard from './src/screens/Dashboard';
+import Header from './src/components/Header';
+import {Image, TouchableOpacity} from 'react-native';
+import Sidebar from './src/components/Sidebar';
+import {DrawerNavigationProp} from '@react-navigation/drawer';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+const Drawer = createDrawerNavigator();
+const Stack = createStackNavigator();
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
+type DrawerNavProps = DrawerNavigationProp<{Home: undefined}>;
 
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+function CustomHeaderRight() {
+  const navigation = useNavigation<DrawerNavProps>();
+
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
+    <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+      <Image
+        source={{
+          uri: 'https://www.alete.in/assets/public/images/new-logo.jpg',
+        }}
+        style={{width: 92, height: 28, marginRight: 15}}
+      />
+    </TouchableOpacity>
+  );
+}
+
+function DrawerNavigator() {
+  return (
+    <Drawer.Navigator
+      drawerContent={props => <Sidebar {...props} />}
+      screenOptions={{
+        headerTintColor: '#0D99FF',
+        drawerActiveTintColor: '#0047AB',
+        drawerInactiveTintColor: '#000',
+        headerRight: () => <CustomHeaderRight />,
+      }}>
+      <Drawer.Screen name="Home" component={Home} />
+      <Drawer.Screen name="About" component={About} />
+      <Drawer.Screen name="Partners" component={Partners} />
+      <Drawer.Screen name="Contact" component={Contact} />
+    </Drawer.Navigator>
   );
 }
 
 function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <NavigationContainer>
+      <Header />
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name="DrawerNavigator" component={DrawerNavigator} />
+        <Stack.Screen name="Dashboard" component={Dashboard} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;
