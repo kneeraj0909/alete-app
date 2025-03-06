@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
+  Image,
   View,
   StyleSheet,
   FlatList,
@@ -20,20 +21,38 @@ import {
   ParamListBase,
   useNavigation,
 } from '@react-navigation/native';
+import BottomTabBar from '../components/BottomTabBar';
+// import Tooltip from 'react-native-tooltips';
+const Slideshow = require('react-native-image-slider-show').default;
 
 const {width} = Dimensions.get('window');
 const numColumns = 3;
 const cardMargin = 10;
 const cardSize = (width - cardMargin * (numColumns + 1)) / numColumns;
 
-interface ImageData {
+const SlidedataSource = [
+  {
+    url: Image.resolveAssetSource(require('../../assets/img/slider1.png')).uri,
+    text: 'Your Health,\nYour Safety Net! \nDiscover the perfect health insurance for you and your loved ones.',
+  },
+  {
+    url: Image.resolveAssetSource(require('../../assets/img/slider1.png')).uri,
+    text: 'Peace of Mind, Always!\nCovers unexpected medical expenses.\nAccess to quality healthcare without financial stress.',
+  },
+  {
+    url: Image.resolveAssetSource(require('../../assets/img/slider1.png')).uri,
+    text: 'Comprehensive Coverage,\nTailored for You!\nCashless hospitalizations at a vast network of hospitals.',
+  },
+];
+
+interface ImageDataProps {
   id: string;
   uri: ImageSourcePropType;
   cartTitle: string;
   route: string;
 }
 
-const images: ImageData[] = [
+const images: ImageDataProps[] = [
   {
     id: '1',
     uri: require('../../assets/img/1.png'),
@@ -42,9 +61,9 @@ const images: ImageData[] = [
   },
   {
     id: '2',
-    uri: require('../../assets/img/2.png'),
-    cartTitle: 'Claims',
-    route: 'Claims',
+    uri: require('../../assets/img/upcoming-renewal.png'),
+    cartTitle: 'Upcoming Renewals',
+    route: 'ComingSoon',
   },
   {
     id: '3',
@@ -54,21 +73,22 @@ const images: ImageData[] = [
   },
   {
     id: '4',
-    uri: require('../../assets/img/4.png'),
-    cartTitle: 'Servicing &\n Request',
-    route: 'Servicing',
-  },
-  {
-    id: '5',
     uri: require('../../assets/img/5.png'),
     cartTitle: 'View Health\n Card',
     route: 'HealthCard',
   },
   {
+    id: '5',
+    uri: require('../../assets/img/2.png'),
+    cartTitle: 'Claims',
+    route: 'Claims',
+  },
+
+  {
     id: '6',
-    uri: require('../../assets/img/6.png'),
-    cartTitle: 'Health &\n Wellbeing',
-    route: 'HealthWellbeing',
+    uri: require('../../assets/img/4.png'),
+    cartTitle: 'Servicing &\n Request',
+    route: 'Servicing',
   },
   {
     id: '7',
@@ -78,15 +98,15 @@ const images: ImageData[] = [
   },
   {
     id: '8',
-    uri: require('../../assets/img/8.png'),
-    cartTitle: 'Find a\n Provider',
-    route: 'Provider',
+    uri: require('../../assets/img/6.png'),
+    cartTitle: 'Health &\n Wellbeing',
+    route: 'HealthWellbeing',
   },
   {
     id: '9',
-    uri: require('../../assets/img/9.png'),
-    cartTitle: 'Coming Soon',
-    route: 'ComingSoon',
+    uri: require('../../assets/img/8.png'),
+    cartTitle: 'Find a\n Provider',
+    route: 'Provider',
   },
 ];
 
@@ -110,7 +130,18 @@ const CardImage = ({imageUri, title, onPress}: CardImageProps) => (
 );
 
 export default function Dashboard() {
+  const [position, setPosition] = useState(0);
   const navigation = useNavigation<NavigationProp<ParamListBase>>();
+  const tooltipRef = useRef(null);
+
+  useEffect(() => {
+    const toggle = setInterval(() => {
+      setPosition(position === SlidedataSource.length - 1 ? 0 : position + 1);
+    }, 3000);
+
+    return () => clearInterval(toggle);
+  });
+
   return (
     <View style={styles.container}>
       <View style={styles.videoContainer}>
@@ -120,6 +151,23 @@ export default function Dashboard() {
           repeat
           resizeMode="cover"
         />
+        <View style={styles.sliderContainer}>
+          <View style={styles.imageSlider}>
+            <Slideshow
+              position={position}
+              dataSource={SlidedataSource}
+              containerStyle={styles.slider}
+              arrowSize={0}
+              indicatorColor="transparent"
+              indicatorSelectedColor="transparent"
+            />
+          </View>
+          <View style={styles.textSlider}>
+            <Text style={styles.sliderText}>
+              {SlidedataSource[position].text}
+            </Text>
+          </View>
+        </View>
       </View>
       <FlatList
         style={{flex: 1}}
@@ -134,38 +182,7 @@ export default function Dashboard() {
         )}
         numColumns={numColumns}
       />
-      <View style={styles.bottomBarContainer}>
-        <TouchableOpacity
-          style={styles.bottomBar}
-          onPress={() => console.log('Home clicked')}>
-          <HomeIcon />
-          <Text style={styles.bottomBarText}>Home</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.bottomBar}
-          onPress={() => console.log('Notebook clicked')}>
-          <NotebookIcon />
-          <Text style={styles.bottomBarText}>Notebook</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.bottomBar}
-          onPress={() => console.log('Health Card clicked')}>
-          <HeathCardIcon />
-          <Text style={styles.bottomBarText}>Health Card</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.bottomBar}
-          onPress={() => console.log('Plus clicked')}>
-          <PlusIcon />
-          <Text style={styles.bottomBarText}>Plus</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.bottomBar}
-          onPress={() => console.log('My Profile clicked')}>
-          <MyProfileIcon />
-          <Text style={styles.bottomBarText}>Profile</Text>
-        </TouchableOpacity>
-      </View>
+      <BottomTabBar />
     </View>
   );
 }
@@ -177,16 +194,57 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
   },
   videoContainer: {
+    position: 'relative',
+    height: width * 0.4,
+    justifyContent: 'center',
+    overflow: 'hidden',
     marginBottom: 20,
   },
   video: {
     width: '100%',
-    height: width * 0.4,
+    height: '100%',
+  },
+  sliderContainer: {
+    position: 'absolute',
+    width: '100%',
+    flexDirection: 'row',
+    height: width * 0.35,
+    marginHorizontal: 10,
+  },
+  imageSlider: {
+    width: '50%',
+    height: '100%',
+    borderRadius: 15,
+    overflow: 'hidden',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  slider: {
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+  },
+  textSlider: {
+    width: '50%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 10,
+  },
+  sliderText: {
+    fontSize: 9.48,
+    fontWeight: '700',
+    color: '#ffffff',
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    borderRadius: 10,
+    lineHeight: 18,
   },
   cardContainer: {
-    marginBottom: 10,
+    marginBottom: 8,
     flex: 1,
-    paddingHorizontal: 8,
+    paddingHorizontal: 6,
   },
   card: {
     width: '100%',
@@ -241,3 +299,26 @@ const styles = StyleSheet.create({
     paddingTop: 10,
   },
 });
+
+// import React from 'react';
+// import { View, StyleSheet } from 'react-native';
+// import { WebView } from 'react-native-webview';
+
+// const Dashboard = () => {
+//   return (
+//     <View style={styles.container}>
+//       <WebView
+//         source={{ uri: 'https://www.alete.in/' }}
+//         style={{ flex: 1 }}
+//       />
+//     </View>
+//   );
+// };
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//   },
+// });
+
+// export default Dashboard;

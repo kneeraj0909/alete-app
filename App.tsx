@@ -11,6 +11,15 @@ import Header from './src/components/Header';
 import {Image, TouchableOpacity} from 'react-native';
 import Sidebar from './src/components/Sidebar';
 import {DrawerNavigationProp} from '@react-navigation/drawer';
+import Portfolio from './src/screens/dashboard/Portfolio';
+import Claims from './src/screens/dashboard/Claims';
+import Documents from './src/screens/dashboard/Documents';
+import Servicing from './src/screens/dashboard/Servicing';
+import HealthCard from './src/screens/dashboard/HealthCard';
+import HealthWellbeing from './src/screens/dashboard/HealthWellbeing';
+import ProductsQuotes from './src/screens/dashboard/ProductsQuotes';
+import UpcomingRenewals from './src/screens/dashboard/UpcomingRenewals';
+import FindAProvider from './src/screens/dashboard/FindAProvider';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -23,10 +32,8 @@ function CustomHeaderRight() {
   return (
     <TouchableOpacity onPress={() => navigation.navigate('Home')}>
       <Image
-        source={{
-          uri: 'https://www.alete.in/assets/public/images/new-logo.jpg',
-        }}
-        style={{width: 92, height: 28, marginRight: 15}}
+        source={require('./assets/img/logo.png')}
+        style={{width: 70, height: 30, marginRight: 15}}
       />
     </TouchableOpacity>
   );
@@ -57,6 +64,15 @@ function App(): React.JSX.Element {
       <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="DrawerNavigator" component={DrawerNavigator} />
         <Stack.Screen name="Dashboard" component={Dashboard} />
+        <Stack.Screen name="Portfolio" component={Portfolio} />
+        <Stack.Screen name="Claims" component={Claims} />
+        <Stack.Screen name="Documents" component={Documents} />
+        <Stack.Screen name="Servicing" component={Servicing} />
+        <Stack.Screen name="HealthCard" component={HealthCard} />
+        <Stack.Screen name="HealthWellbeing" component={HealthWellbeing} />
+        <Stack.Screen name="Products" component={ProductsQuotes} />
+        <Stack.Screen name="Provider" component={FindAProvider} />
+        <Stack.Screen name="ComingSoon" component={UpcomingRenewals} />
       </Stack.Navigator>
     </NavigationContainer>
   );

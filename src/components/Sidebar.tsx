@@ -1,13 +1,13 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
-import { DrawerContentScrollView } from '@react-navigation/drawer';
+import {View, Text, TouchableOpacity, Image, StyleSheet} from 'react-native';
+import {DrawerContentScrollView} from '@react-navigation/drawer';
 
 const Sidebar = (props: any) => {
   return (
     <DrawerContentScrollView {...props}>
       <View style={styles.drawerHeader}>
         <Image
-          source={{ uri: 'https://www.alete.in/assets/public/images/new-logo.jpg' }}
+          source={require('../../assets/img/logo.png')}
           style={styles.logo}
         />
       </View>
@@ -16,8 +16,7 @@ const Sidebar = (props: any) => {
           <TouchableOpacity
             key={index}
             onPress={() => props.navigation.navigate(route.name)}
-            style={styles.drawerItem}
-          >
+            style={styles.drawerItem}>
             <Text style={styles.drawerText}>{route.name}</Text>
           </TouchableOpacity>
         ))}
@@ -34,7 +33,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   logo: {
-    width: 120,
+    width: 100,
     height: 40,
     resizeMode: 'contain',
   },
