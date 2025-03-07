@@ -1,47 +1,90 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import Popover from 'react-native-popover-view';
 import {HomeIcon} from '../../assets/svg/Home';
 import {NotebookIcon} from '../../assets/svg/Notebook';
 import {HeathCardIcon} from '../../assets/svg/HealthCard';
 import {PlusIcon} from '../../assets/svg/Plus';
 import {MyProfileIcon} from '../../assets/svg/MyProfile';
+import {LogoutIcon} from '../../assets/svg/Logout';
+import {HamburgerIcon} from '../../assets/svg/Hamburger';
 
-const BottomTabBar = () => {
-  const navigation = useNavigation();
+type NavigationType = {
+  navigate: (screen: string) => void;
+};
+
+const BottomTabBar: React.FC = () => {
+  const navigation = useNavigation<NavigationType>();
+  const [showPopover, setShowPopover] = useState<boolean>(false);
+
+  useEffect(() => {
+    setShowPopover(false);
+  }, []);
+
+  const logoutHandler = () => setShowPopover(false);
+  const myProfileHandler = () => {
+    setShowPopover(false);
+    navigation.navigate('MyProfile');
+  };
+
+  const tabs = [
+    {
+      icon: <HomeIcon />,
+      label: 'Home',
+      onPress: () => console.log('Home clicked'),
+    },
+    {
+      icon: <NotebookIcon />,
+      label: 'Notebook',
+      onPress: () => console.log('Notebook clicked'),
+    },
+    {
+      icon: <HeathCardIcon />,
+      label: 'Health Card',
+      onPress: () => console.log('Health Card clicked'),
+    },
+    {
+      icon: <PlusIcon />,
+      label: 'Plus',
+      onPress: () => console.log('Plus clicked'),
+    },
+  ];
 
   return (
     <View style={styles.bottomBarContainer}>
-      <TouchableOpacity
-        style={styles.bottomBar}
-        onPress={() => console.log('Home clicked')}>
-        <HomeIcon />
-        <Text style={styles.bottomBarText}>Home</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.bottomBar}
-        onPress={() => console.log('Notebook clicked')}>
-        <NotebookIcon />
-        <Text style={styles.bottomBarText}>Notebook</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.bottomBar}
-        onPress={() => console.log('Health Card clicked')}>
-        <HeathCardIcon />
-        <Text style={styles.bottomBarText}>Health Card</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.bottomBar}
-        onPress={() => console.log('Plus clicked')}>
-        <PlusIcon />
-        <Text style={styles.bottomBarText}>Plus</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.bottomBar}
-        onPress={() => console.log('My Profile clicked')}>
-        <MyProfileIcon />
-        <Text style={styles.bottomBarText}>Profile</Text>
-      </TouchableOpacity>
+      {tabs.map(({icon, label, onPress}, index) => (
+        <TouchableOpacity
+          key={index}
+          style={styles.bottomBar}
+          onPress={onPress}>
+          {icon}
+          <Text style={styles.bottomBarText}>{label}</Text>
+        </TouchableOpacity>
+      ))}
+
+      <Popover
+        isVisible={showPopover}
+        onRequestClose={() => setShowPopover(false)}
+        from={
+          <TouchableOpacity
+            style={styles.bottomBar}
+            onPress={() => setShowPopover(true)}>
+            <MyProfileIcon />
+            <Text style={styles.bottomBarText}>Profile</Text>
+          </TouchableOpacity>
+        }>
+        <View>
+          <TouchableOpacity style={styles.menuItem} onPress={myProfileHandler}>
+            <HamburgerIcon />
+            <Text style={styles.menuText}>My Profile</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.menuItem} onPress={logoutHandler}>
+            <LogoutIcon />
+            <Text style={styles.menuText}>Logout</Text>
+          </TouchableOpacity>
+        </View>
+      </Popover>
     </View>
   );
 };
@@ -71,6 +114,18 @@ const styles = StyleSheet.create({
     lineHeight: 12,
     color: '#000000',
     paddingTop: 10,
+  },
+  menuItem: {
+    flexDirection: 'row',
+    gap: 20,
+    paddingLeft: 10,
+    paddingRight: 20,
+    paddingVertical: 10,
+  },
+  menuText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#333',
   },
 });
 

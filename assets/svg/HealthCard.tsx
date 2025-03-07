@@ -16,7 +16,7 @@ export interface HeathCardIconProps {
 export function HeathCardIcon({pathProps, svgProps}: HeathCardIconProps) {
   return (
     <Svg width="28" height="27" fill="none" {...svgProps}>
-      <G clip-path="url(#a)" fill="#033381">
+      <G clipPath="url(#a)" fill="#033381">
         <Path
           d="M25.813 5.063v16.875H2.188V5.063h23.625ZM27.5 3.375H.5v20.25h27V3.375Z"
           {...pathProps}

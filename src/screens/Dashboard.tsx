@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useState} from 'react';
 import {
   Image,
   View,
@@ -11,18 +11,12 @@ import {
 } from 'react-native';
 import {Card} from 'react-native-paper';
 import Video from 'react-native-video';
-import {HomeIcon} from '../../assets/svg/Home';
-import {NotebookIcon} from '../../assets/svg/Notebook';
-import {HeathCardIcon} from '../../assets/svg/HealthCard';
-import {PlusIcon} from '../../assets/svg/Plus';
-import {MyProfileIcon} from '../../assets/svg/MyProfile';
 import {
   NavigationProp,
   ParamListBase,
   useNavigation,
 } from '@react-navigation/native';
 import BottomTabBar from '../components/BottomTabBar';
-// import Tooltip from 'react-native-tooltips';
 const Slideshow = require('react-native-image-slider-show').default;
 
 const {width} = Dimensions.get('window');
@@ -132,15 +126,6 @@ const CardImage = ({imageUri, title, onPress}: CardImageProps) => (
 export default function Dashboard() {
   const [position, setPosition] = useState(0);
   const navigation = useNavigation<NavigationProp<ParamListBase>>();
-  const tooltipRef = useRef(null);
-
-  useEffect(() => {
-    const toggle = setInterval(() => {
-      setPosition(position === SlidedataSource.length - 1 ? 0 : position + 1);
-    }, 3000);
-
-    return () => clearInterval(toggle);
-  });
 
   return (
     <View style={styles.container}>
@@ -154,7 +139,6 @@ export default function Dashboard() {
         <View style={styles.sliderContainer}>
           <View style={styles.imageSlider}>
             <Slideshow
-              position={position}
               dataSource={SlidedataSource}
               containerStyle={styles.slider}
               arrowSize={0}

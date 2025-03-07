@@ -15,7 +15,7 @@ export interface MyProfileIconProps {
 
 export function MyProfileIcon({pathProps, svgProps}: MyProfileIconProps) {
   return (
-    <Svg width="28" height="28" fill="none" {...svgProps}>
+    <Svg width="24" height="24" fill="none" {...svgProps}>
       <Path
         d="M7.013 15.4A2.8 2.8 0 0 0 4.2 18.2c0 2.367 1.166 4.152 2.99 5.315C8.983 24.66 11.402 25.2 14 25.2c2.597 0 5.016-.54 6.811-1.684 1.823-1.162 2.99-2.95 2.99-5.316a2.8 2.8 0 0 0-2.8-2.8H7.012Z"
         fill="url(#a)"

@@ -20,6 +20,7 @@ import HealthWellbeing from './src/screens/dashboard/HealthWellbeing';
 import ProductsQuotes from './src/screens/dashboard/ProductsQuotes';
 import UpcomingRenewals from './src/screens/dashboard/UpcomingRenewals';
 import FindAProvider from './src/screens/dashboard/FindAProvider';
+import MyProfile from './src/screens/dashboard/MyProfile';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -73,6 +74,7 @@ function App(): React.JSX.Element {
         <Stack.Screen name="Products" component={ProductsQuotes} />
         <Stack.Screen name="Provider" component={FindAProvider} />
         <Stack.Screen name="ComingSoon" component={UpcomingRenewals} />
+        <Stack.Screen name="MyProfile" component={MyProfile} />
       </Stack.Navigator>
     </NavigationContainer>
   );
