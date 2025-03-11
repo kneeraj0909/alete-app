@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import Popover from 'react-native-popover-view';
@@ -18,11 +18,8 @@ const BottomTabBar: React.FC = () => {
   const navigation = useNavigation<NavigationType>();
   const [showPopover, setShowPopover] = useState<boolean>(false);
 
-  useEffect(() => {
-    setShowPopover(false);
-  }, []);
-
   const logoutHandler = () => setShowPopover(false);
+
   const myProfileHandler = () => {
     setShowPopover(false);
     navigation.navigate('MyProfile');
@@ -65,14 +62,16 @@ const BottomTabBar: React.FC = () => {
 
       <Popover
         isVisible={showPopover}
-        onRequestClose={() => setShowPopover(false)}
+        onRequestClose={() => setShowPopover(prev => !prev)}
         from={
-          <TouchableOpacity
-            style={styles.bottomBar}
-            onPress={() => setShowPopover(true)}>
-            <MyProfileIcon />
-            <Text style={styles.bottomBarText}>Profile</Text>
-          </TouchableOpacity>
+          <View>
+            <TouchableOpacity
+              style={styles.bottomBar}
+              onPress={() => setShowPopover(true)}>
+              <MyProfileIcon />
+              <Text style={styles.bottomBarText}>Profile</Text>
+            </TouchableOpacity>
+          </View>
         }>
         <View>
           <TouchableOpacity style={styles.menuItem} onPress={myProfileHandler}>

@@ -27,7 +27,7 @@ const Stack = createStackNavigator();
 
 type DrawerNavProps = DrawerNavigationProp<{Home: undefined}>;
 
-function CustomHeaderRight() {
+const CustomHeaderRight = (): React.JSX.Element => {
   const navigation = useNavigation<DrawerNavProps>();
 
   return (
@@ -38,9 +38,9 @@ function CustomHeaderRight() {
       />
     </TouchableOpacity>
   );
-}
+};
 
-function DrawerNavigator() {
+const DrawerNavigator = (): React.JSX.Element => {
   return (
     <Drawer.Navigator
       drawerContent={props => <Sidebar {...props} />}
@@ -56,7 +56,7 @@ function DrawerNavigator() {
       <Drawer.Screen name="Contact" component={Contact} />
     </Drawer.Navigator>
   );
-}
+};
 
 function App(): React.JSX.Element {
   return (

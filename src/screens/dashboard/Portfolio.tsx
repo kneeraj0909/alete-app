@@ -5,6 +5,7 @@ import {
   View,
   ScrollView,
   TouchableOpacity,
+  GestureResponderEvent,
 } from 'react-native';
 import {ViewPolicyIcon} from '../../../assets/svg/ViewPolicy';
 import {LeftArrowIcon} from '../../../assets/svg/LeftArrow';
@@ -15,6 +16,7 @@ import {
   useNavigation,
 } from '@react-navigation/native';
 import BottomTabBar from '../../components/BottomTabBar';
+import Button from '../../components/Button';
 
 interface Policy {
   insurer: string;
@@ -194,10 +196,12 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontWeight: '500',
     color: '#033381',
+    width: 200,
   },
   value: {
     fontSize: 13,
     fontWeight: '400',
     color: '#000',
+    width:120
   },
 });

@@ -15,6 +15,7 @@ interface ButtonProps {
   leftIcon?: any;
   rightIcon?: any;
   iconSize?: number;
+  style?: object;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -25,10 +26,11 @@ const Button: React.FC<ButtonProps> = ({
   leftIcon,
   rightIcon,
   iconSize = 20,
+  style,
 }) => {
   return (
     <TouchableOpacity
-      style={[styles.button, {backgroundColor}]}
+      style={[styles.button, {backgroundColor}, style]}
       onPress={onPress}>
       {leftIcon && (
         <Image
