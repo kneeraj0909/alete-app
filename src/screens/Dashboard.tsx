@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
   Image,
   View,
@@ -16,8 +16,6 @@ import {
   ParamListBase,
   useNavigation,
 } from '@react-navigation/native';
-import BottomTabBar from '../components/BottomTabBar';
-const Slideshow = require('react-native-image-slider-show').default;
 
 const {width} = Dimensions.get('window');
 const numColumns = 3;
@@ -30,14 +28,21 @@ const SlidedataSource = [
     text: 'Your Health,\nYour Safety Net! \nDiscover the perfect health insurance for you and your loved ones.',
   },
   {
-    url: Image.resolveAssetSource(require('../../assets/img/slider1.png')).uri,
+    url: Image.resolveAssetSource(require('../../assets/img/1.png')).uri,
     text: 'Peace of Mind, Always!\nCovers unexpected medical expenses.\nAccess to quality healthcare without financial stress.',
   },
   {
-    url: Image.resolveAssetSource(require('../../assets/img/slider1.png')).uri,
+    url: Image.resolveAssetSource(require('../../assets/img/2.png')).uri,
     text: 'Comprehensive Coverage,\nTailored for You!\nCashless hospitalizations at a vast network of hospitals.',
   },
 ];
+
+const renderItem = ({item}: {item: {url: string; text: string}}) => (
+  <View style={styles.carouselItem}>
+    <Image source={{uri: item.url}} style={styles.carouselImage} />
+    <Text style={styles.carouselText}>{item.text}</Text>
+  </View>
+);
 
 interface ImageDataProps {
   id: string;
@@ -124,7 +129,6 @@ const CardImage = ({imageUri, title, onPress}: CardImageProps) => (
 );
 
 export default function Dashboard() {
-  const [position, setPosition] = useState(0);
   const navigation = useNavigation<NavigationProp<ParamListBase>>();
 
   return (
@@ -136,27 +140,14 @@ export default function Dashboard() {
           repeat
           resizeMode="cover"
         />
-        <View style={styles.sliderContainer}>
-          <View style={styles.imageSlider}>
-            <Slideshow
-              dataSource={SlidedataSource}
-              containerStyle={styles.slider}
-              arrowSize={0}
-              indicatorColor="transparent"
-              indicatorSelectedColor="transparent"
-            />
-          </View>
-          <View style={styles.textSlider}>
-            <Text style={styles.sliderText}>
-              {SlidedataSource[position].text}
-            </Text>
-          </View>
-        </View>
+
+        <View style={styles.sliderContainer}></View>
       </View>
+
       <FlatList
         style={{flex: 1}}
         data={images}
-        keyExtractor={item => item.id}
+        keyExtractor={(item, index) => item.id || index.toString()}
         renderItem={({item}) => (
           <CardImage
             imageUri={item.uri}
@@ -166,7 +157,6 @@ export default function Dashboard() {
         )}
         numColumns={numColumns}
       />
-      <BottomTabBar />
     </View>
   );
 }
@@ -188,43 +178,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
-  sliderContainer: {
-    position: 'absolute',
-    width: '100%',
-    flexDirection: 'row',
-    height: width * 0.35,
-    marginHorizontal: 10,
-  },
-  imageSlider: {
-    width: '50%',
-    height: '100%',
-    borderRadius: 15,
-    overflow: 'hidden',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  slider: {
-    width: '100%',
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'center',
-  },
-  textSlider: {
-    width: '50%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 10,
-  },
-  sliderText: {
-    fontSize: 9.48,
-    fontWeight: '700',
-    color: '#ffffff',
-    paddingVertical: 10,
-    paddingHorizontal: 15,
-    borderRadius: 10,
-    lineHeight: 18,
-  },
+
   cardContainer: {
     marginBottom: 8,
     flex: 1,
@@ -257,52 +211,25 @@ const styles = StyleSheet.create({
     color: '#000000',
     textAlign: 'center',
   },
-  bottomBarContainer: {
-    position: 'absolute',
-    bottom: 0,
-    width: '100%',
+
+  carouselItem: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    backgroundColor: '#ffffff',
-    borderWidth: 1,
-    borderColor: 'gray',
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-    paddingVertical: 14,
-    paddingHorizontal: 18,
-  },
-  bottomBar: {
     alignItems: 'center',
   },
-  bottomBarText: {
-    fontSize: 10,
-    fontWeight: 700,
-    lineHeight: 12,
-    color: '#000000',
-    paddingTop: 10,
+  carouselImage: {
+    width: width * 0.35,
+    height: 200,
+    borderRadius: 10,
+  },
+  carouselText: {
+    flex: 1,
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#333',
+    textAlign: 'left',
+    paddingLeft: 10,
+  },
+  sliderContainer: {
+    position: 'absolute',
   },
 });
-
-// import React from 'react';
-// import { View, StyleSheet } from 'react-native';
-// import { WebView } from 'react-native-webview';
-
-// const Dashboard = () => {
-//   return (
-//     <View style={styles.container}>
-//       <WebView
-//         source={{ uri: 'https://www.alete.in/' }}
-//         style={{ flex: 1 }}
-//       />
-//     </View>
-//   );
-// };
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//   },
-// });
-
-// export default Dashboard;

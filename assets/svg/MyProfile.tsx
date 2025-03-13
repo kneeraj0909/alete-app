@@ -39,7 +39,7 @@ export function MyProfileIcon({pathProps, svgProps}: MyProfileIconProps) {
           x2="12.028"
           y2="26.814"
           gradientUnits="userSpaceOnUse">
-          <Stop offset=".125" stopColor="#9C6CFE" />
+          <Stop offset="0.125" stopColor="#9C6CFE" />
           <Stop offset="1" stopColor="#7A41DC" />
         </LinearGradient>
         <LinearGradient
@@ -59,7 +59,7 @@ export function MyProfileIcon({pathProps, svgProps}: MyProfileIconProps) {
           x2="16.771"
           y2="13.403"
           gradientUnits="userSpaceOnUse">
-          <Stop offset=".125" stopColor="#9C6CFE" />
+          <Stop offset="0.125" stopColor="#9C6CFE" />
           <Stop offset="1" stopColor="#7A41DC" />
         </LinearGradient>
       </Defs>

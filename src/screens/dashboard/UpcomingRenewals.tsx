@@ -14,7 +14,6 @@ import {
   ParamListBase,
   useNavigation,
 } from '@react-navigation/native';
-import BottomTabBar from '../../components/BottomTabBar';
 
 interface Policy {
   insurerName: string;
@@ -86,7 +85,6 @@ const UpcomingRenewals: React.FC = () => {
           </View>
         ))}
       </ScrollView>
-      <BottomTabBar />
     </View>
   );
 };

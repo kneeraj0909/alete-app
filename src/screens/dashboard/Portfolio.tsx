@@ -15,8 +15,6 @@ import {
   ParamListBase,
   useNavigation,
 } from '@react-navigation/native';
-import BottomTabBar from '../../components/BottomTabBar';
-import Button from '../../components/Button';
 
 interface Policy {
   insurer: string;
@@ -89,7 +87,6 @@ const PolicyCard: React.FC = () => {
           </View>
         ))}
       </ScrollView>
-      <BottomTabBar />
     </View>
   );
 };

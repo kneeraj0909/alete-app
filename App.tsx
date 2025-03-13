@@ -1,5 +1,9 @@
 import React from 'react';
-import {NavigationContainer, useNavigation} from '@react-navigation/native';
+import {
+  NavigationContainer,
+  useNavigation,
+  useNavigationState,
+} from '@react-navigation/native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {createStackNavigator} from '@react-navigation/stack';
 import Home from './src/screens/Home';
@@ -21,6 +25,7 @@ import ProductsQuotes from './src/screens/dashboard/ProductsQuotes';
 import UpcomingRenewals from './src/screens/dashboard/UpcomingRenewals';
 import FindAProvider from './src/screens/dashboard/FindAProvider';
 import MyProfile from './src/screens/dashboard/MyProfile';
+import BottomTabBar from './src/components/BottomTabBar';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -58,6 +63,31 @@ const DrawerNavigator = (): React.JSX.Element => {
   );
 };
 
+// Component to handle BottomTabBar visibility based on the current screen
+const TabBarWrapper = () => {
+  const state = useNavigationState(state => state);
+
+  const currentRouteName = state?.routes[state?.index]?.name || 'Home';
+
+  const hideBottomTabScreens = [
+    'Dashboard',
+    'Portfolio',
+    'Claims',
+    'Documents',
+    'Servicing',
+    'HealthCard',
+    'HealthWellbeing',
+    'Products',
+    'Provider',
+    'ComingSoon',
+    'MyProfile',
+  ];
+
+  return hideBottomTabScreens.includes(currentRouteName) ? (
+    <BottomTabBar />
+  ) : null;
+};
+
 function App(): React.JSX.Element {
   return (
     <NavigationContainer>
@@ -76,6 +106,8 @@ function App(): React.JSX.Element {
         <Stack.Screen name="ComingSoon" component={UpcomingRenewals} />
         <Stack.Screen name="MyProfile" component={MyProfile} />
       </Stack.Navigator>
+
+      <TabBarWrapper />
     </NavigationContainer>
   );
 }

@@ -1,14 +1,52 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+} from 'react-native';
+import {LeftArrowIcon} from '../../../assets/svg/LeftArrow';
 
-const HealthWellbeing = () => {
+import {
+  NavigationProp,
+  ParamListBase,
+  useNavigation,
+} from '@react-navigation/native';
+
+const HealthWellbeing: React.FC = () => {
+  const navigation = useNavigation<NavigationProp<ParamListBase>>();
+
   return (
-    <View>
-      <Text>HealthWellbeing</Text>
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <View style={styles.headerLeft}>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <LeftArrowIcon />
+          </TouchableOpacity>
+          <Text>Health Wellbeing</Text>
+        </View>
+      </View>
     </View>
-  )
-}
+  );
+};
 
-export default HealthWellbeing
+export default HealthWellbeing;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#DEE8F1',
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginVertical: 14,
+    paddingHorizontal: 20,
+  },
+  headerLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+});
