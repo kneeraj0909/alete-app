@@ -21,7 +21,7 @@ interface ButtonProps {
 const Button: React.FC<ButtonProps> = ({
   text,
   onPress,
-  backgroundColor = '#3498db',
+  backgroundColor,
   textColor = 'white',
   leftIcon,
   rightIcon,
@@ -62,17 +62,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 12,
+    paddingVertical: 8,
     paddingHorizontal: 20,
-    elevation: 3, // For Android shadow
-    shadowColor: '#000', // For iOS shadow
     shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.8,
     shadowRadius: 2,
   },
   text: {
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontSize: 12,
+    fontWeight:500,
+    fontFamily: 'Inter-VariableFont_opsz,wght',
   },
   icon: {
     tintColor: 'white',

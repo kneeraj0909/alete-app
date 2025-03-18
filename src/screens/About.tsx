@@ -44,9 +44,9 @@ const About = () => {
           world.
         </Text>
       </View>
-     <View style={styles.footer}>
-     <Footer />
-     </View>
+      <View style={styles.footer}>
+        <Footer />
+      </View>
     </ImageBackground>
   );
 };
@@ -62,30 +62,33 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   overlay: {
-    padding: 20,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
     position: 'absolute',
-    top: 50,
+    top: 10,
   },
   heading: {
+    fontFamily: 'Inter-VariableFont_opsz,wght',
     color: 'white',
     fontSize: 20,
-    fontWeight: 500,
+    fontWeight: 700,
     lineHeight: 21,
     textAlign: 'center',
-    paddingBottom: 16,
+    paddingBottom: 12,
   },
   text: {
+    fontFamily: 'Inter-VariableFont_opsz,wght',
     color: 'white',
-    fontSize: 16,
+    fontSize: 12,
     fontWeight: 400,
     lineHeight: 21,
     textAlign: 'justify',
-    paddingBottom:20
+    paddingBottom: 8,
   },
-  footer:{
-    width:'100%',
-    position:'absolute',
-    bottom:0,
-    left:0
-  }
+  footer: {
+    width: '100%',
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+  },
 });

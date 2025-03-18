@@ -15,6 +15,7 @@ import {
   useNavigation,
 } from '@react-navigation/native';
 import {TextInput, Button} from 'react-native-paper';
+import DashboardHeader from '../../components/DashboardHeader';
 
 const MyProfile: React.FC = () => {
   const [inputFields, setInputFields] = useState({
@@ -61,12 +62,15 @@ const MyProfile: React.FC = () => {
   return (
     <View style={styles.container}>
       {/* Header Section */}
-      <View style={styles.header}>
+      {/* <View style={styles.header}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <LeftArrowIcon />
         </TouchableOpacity>
         <Text style={styles.title}>Customer Details</Text>
-      </View>
+      </View> */}
+
+      <DashboardHeader title='Customer Details' />
+
 
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}

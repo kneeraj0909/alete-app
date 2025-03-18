@@ -3,20 +3,14 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity,
   Pressable,
   Animated,
+  ViewStyle,
 } from 'react-native';
-import {LeftArrowIcon} from '../../../assets/svg/LeftArrow';
-
-import {
-  NavigationProp,
-  ParamListBase,
-  useNavigation,
-} from '@react-navigation/native';
 import {DocumentsIcon} from '../../../assets/svg/Documents';
 import {DownArrowIcon} from '../../../assets/svg/DownArrow';
 import {DownloadIcon} from '../../../assets/svg/Download';
+import DashboardHeader from '../../components/DashboardHeader';
 
 interface dropdownProps {
   dropdownTitle?: string;
@@ -28,18 +22,26 @@ interface dropdownProps {
 interface DownloadDropdownProps {
   dropdownTitle: string;
   onPress: () => void;
+  style?: ViewStyle;
 }
 
-const DownloadDropdown = ({dropdownTitle, onPress}: DownloadDropdownProps) => {
+const DownloadDropdown = ({
+  dropdownTitle,
+  onPress,
+  style,
+}: DownloadDropdownProps) => {
   return (
     <Pressable
       onPress={onPress}
-      style={{
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        paddingHorizontal: 12,
-        paddingVertical: 8,
-      }}>
+      style={[
+        {
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          paddingHorizontal: 12,
+          paddingVertical: 8,
+        },
+        style,
+      ]}>
       <DocumentsIcon />
       <Text style={styles.dropdownText}>{dropdownTitle}</Text>
       <DownloadIcon />
@@ -110,7 +112,6 @@ const Dropdown = ({dropdownTitle, expanded, onPress, data}: dropdownProps) => {
 };
 
 const Documents: React.FC = () => {
-  const navigation = useNavigation<NavigationProp<ParamListBase>>();
   const [expandedDropdown, setExpandedDropdown] = useState<string | null>(null);
 
   const handleToggle = (title: string) => {
@@ -119,15 +120,7 @@ const Documents: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <View style={styles.headerLeft}>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <LeftArrowIcon />
-          </TouchableOpacity>
-          <Text>Download Documents</Text>
-        </View>
-      </View>
-
+      <DashboardHeader title="Download Documents" />
       <Dropdown
         dropdownTitle="Policy Documents"
         expanded={expandedDropdown === 'Policy Documents'}
@@ -154,10 +147,13 @@ const Documents: React.FC = () => {
         data={['Others']}
       />
 
-      <DownloadDropdown
-        dropdownTitle={'Registration certificate'}
-        onPress={() => {}}
-      />
+      <View>
+        <DownloadDropdown
+          dropdownTitle={'Registration certificate'}
+          onPress={() => {}}
+          style={styles.downloadStyle}
+        />
+      </View>
     </View>
   );
 };
@@ -168,18 +164,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#DEE8F1',
-  },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginVertical: 14,
-    paddingHorizontal: 20,
-  },
-  headerLeft: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
   },
   dropdown: {
     flexDirection: 'row',
@@ -201,5 +185,12 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     paddingVertical: 5,
     marginBottom: 10,
+  },
+  downloadStyle: {
+    marginHorizontal: 20,
+    paddingLeft: 16,
+    paddingRight: 12,
+    backgroundColor: '#ffffff',
+    borderRadius: 4,
   },
 });

@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Dimensions,
-  Text,
-} from 'react-native';
+import {StyleSheet, View, Dimensions, Text} from 'react-native';
 import Video from 'react-native-video';
 import Button from '../components/Button';
 import Footer from '../components/Footer';
@@ -22,19 +17,20 @@ const Home = ({navigation}: any) => {
           paused={false}
           resizeMode="cover"
         />
+
+        <Text style={styles.homeText}>
+          Insurance Advisory Services for Ultra High Net Worth Families &
+          Businesses
+        </Text>
+
+        <View style={styles.buttonContainer}>
+          <Button
+            text="Client Login"
+            onPress={() => navigation.navigate('Dashboard')}
+          />
+        </View>
       </View>
 
-      <Text style={styles.homeText}>
-        Insurance Advisory Services for Ultra High Net Worth Families &
-        Businesses
-      </Text>
-
-      <View style={styles.button}>
-        <Button
-          text="Client Login"
-          onPress={() => navigation.navigate('Dashboard')}
-        />
-      </View>
       <Footer />
     </View>
   );
@@ -47,31 +43,28 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   container: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
-    height: '100%',
   },
   video: {
+    position: 'absolute',
     width: width,
     height: height,
-    position: 'absolute',
   },
   homeText: {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: [{translateX: -width / 2}, {translateY: -height / 4}],
+    fontFamily: 'PlayfairDisplay-VariableFont_wght',
     color: 'white',
-    fontSize: 30,
+    fontSize: 24,
     lineHeight: 36,
     textAlign: 'center',
-    fontWeight: 'bold',
+    fontWeight: '600',
+    paddingHorizontal: 40,
   },
-  button: {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: [{translateX: -width / 6}, {translateY: -height / 16}],
+  buttonContainer: {
+    marginTop: height * 0.05,
+    backgroundColor: '#41B749',
+    borderRadius: 2,
   },
 });

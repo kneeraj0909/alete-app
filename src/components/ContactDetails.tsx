@@ -36,17 +36,19 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 16,
     alignItems: 'center',
-    paddingBottom:25,
+    paddingBottom:20,
     borderRadius:4
   },
   text: {
+    fontFamily: 'Inter-VariableFont_opsz,wght',
     fontSize: 14,
     fontWeight: '400',
-    lineHeight: 15,
+    lineHeight: 10,
     color: '#ffffff',
-    paddingBottom: 8,
+    paddingBottom: 6,
   },
   subText: {
+    fontFamily: 'Inter-VariableFont_opsz,wght',
     fontSize: 10,
     fontWeight: '400',
     lineHeight: 10,

@@ -1,15 +1,13 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, Image, StyleSheet} from 'react-native';
+import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import {DrawerContentScrollView} from '@react-navigation/drawer';
+import Logo from '../../assets/svg/svgImg/logo.svg';
 
 const Sidebar = (props: any) => {
   return (
     <DrawerContentScrollView {...props}>
       <View style={styles.drawerHeader}>
-        <Image
-          source={require('../../assets/img/logo.png')}
-          style={styles.logo}
-        />
+        <Logo />
       </View>
       <View style={styles.drawerItems}>
         {props.state.routes.map((route: any, index: number) => (
@@ -45,7 +43,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   drawerText: {
-    fontSize: 16,
-    fontWeight: '500',
+    fontFamily: 'Inter-VariableFont_opsz,wght',
+    fontSize: 15,
+    fontWeight: '700',
+    color:'#000000'
   },
 });

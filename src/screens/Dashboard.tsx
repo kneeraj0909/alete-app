@@ -62,7 +62,7 @@ const images: ImageDataProps[] = [
     id: '2',
     uri: require('../../assets/img/upcoming-renewal.png'),
     cartTitle: 'Upcoming Renewals',
-    route: 'ComingSoon',
+    route: 'UpcomingRenewals',
   },
   {
     id: '3',
@@ -74,38 +74,44 @@ const images: ImageDataProps[] = [
     id: '4',
     uri: require('../../assets/img/5.png'),
     cartTitle: 'View Health\n Card',
-    route: 'HealthCard',
+    route: 'Dashboard',
+    // route: 'HealthCard',
   },
   {
     id: '5',
     uri: require('../../assets/img/2.png'),
     cartTitle: 'Claims',
-    route: 'Claims',
+    route: 'Dashboard',
+    // route: 'Claims',
   },
 
   {
     id: '6',
     uri: require('../../assets/img/4.png'),
     cartTitle: 'Servicing &\n Request',
-    route: 'Servicing',
+    route: 'Dashboard',
+    // route: 'Servicing',
   },
   {
     id: '7',
     uri: require('../../assets/img/7.png'),
     cartTitle: 'Products &\n Quotes',
-    route: 'Products',
+    route: 'Dashboard',
+    // route: 'Products',
   },
   {
     id: '8',
     uri: require('../../assets/img/6.png'),
     cartTitle: 'Health &\n Wellbeing',
-    route: 'HealthWellbeing',
+    route: 'Dashboard',
+    // route: 'HealthWellbeing',
   },
   {
     id: '9',
     uri: require('../../assets/img/8.png'),
     cartTitle: 'Find a\n Provider',
-    route: 'Provider',
+    route: 'Dashboard',
+    // route: 'Provider',
   },
 ];
 
@@ -172,7 +178,7 @@ const styles = StyleSheet.create({
     height: width * 0.4,
     justifyContent: 'center',
     overflow: 'hidden',
-    marginBottom: 20,
+    marginBottom: 15,
   },
   video: {
     width: '100%',
@@ -180,8 +186,8 @@ const styles = StyleSheet.create({
   },
 
   cardContainer: {
-    marginBottom: 8,
     flex: 1,
+    marginBottom: 4,
     paddingHorizontal: 6,
   },
   card: {

@@ -8,7 +8,7 @@ import {HeathCardIcon} from '../../assets/svg/HealthCard';
 import {PlusIcon} from '../../assets/svg/Plus';
 import {MyProfileIcon} from '../../assets/svg/MyProfile';
 import {LogoutIcon} from '../../assets/svg/Logout';
-import {HamburgerIcon} from '../../assets/svg/Hamburger';
+import {MyProfileSmall} from '../../assets/svg/MyProfileSmall';
 
 type NavigationType = {
   navigate: (screen: string) => void;
@@ -18,7 +18,9 @@ const BottomTabBar: React.FC = () => {
   const navigation = useNavigation<NavigationType>();
   const [showPopover, setShowPopover] = useState<boolean>(false);
 
-  const logoutHandler = () => setShowPopover(false);
+  const logoutHandler = () => {
+    setShowPopover(false);
+  };
 
   const myProfileHandler = () => {
     setShowPopover(false);
@@ -75,7 +77,7 @@ const BottomTabBar: React.FC = () => {
         }>
         <View>
           <TouchableOpacity style={styles.menuItem} onPress={myProfileHandler}>
-            <HamburgerIcon />
+            <MyProfileSmall />
             <Text style={styles.menuText}>My Profile</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.menuItem} onPress={logoutHandler}>

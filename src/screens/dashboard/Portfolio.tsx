@@ -5,16 +5,10 @@ import {
   View,
   ScrollView,
   TouchableOpacity,
-  GestureResponderEvent,
 } from 'react-native';
 import {ViewPolicyIcon} from '../../../assets/svg/ViewPolicy';
-import {LeftArrowIcon} from '../../../assets/svg/LeftArrow';
 import {PlusSmallIcon} from '../../../assets/svg/PlusSmallIcon';
-import {
-  NavigationProp,
-  ParamListBase,
-  useNavigation,
-} from '@react-navigation/native';
+import DashboardHeader from '../../components/DashboardHeader';
 
 interface Policy {
   insurer: string;
@@ -40,22 +34,18 @@ const RowData: React.FC<{label: string; value: string}> = ({label, value}) => (
 );
 
 const PolicyCard: React.FC = () => {
-  const navigation = useNavigation<NavigationProp<ParamListBase>>();
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <View style={styles.headerLeft}>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <LeftArrowIcon />
-          </TouchableOpacity>
-          <Text>Rajesh Relan</Text>
-        </View>
-        <View style={styles.headerRight}>
+      <DashboardHeader title="Rajesh Relan" />
+      <View style={styles.buttonsContainer}>
+        <View style={styles.blueBtn}>
           {['My Family', 'My Company'].map(item => (
             <TouchableOpacity key={item} style={styles.headerButton}>
               <Text style={styles.headerButtonText}>{item}</Text>
             </TouchableOpacity>
           ))}
+        </View>
+        <View>
           <TouchableOpacity style={styles.addPolicyButton}>
             <PlusSmallIcon />
             <Text style={styles.addPolicyText}>Add Policy</Text>
@@ -69,6 +59,7 @@ const PolicyCard: React.FC = () => {
 
       <ScrollView
         style={styles.scrollView}
+        contentContainerStyle={{paddingBottom: 80}}
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps="handled">
         {policies.map((item, index) => (
@@ -98,19 +89,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#DEE8F1',
   },
-  header: {
+  buttonsContainer: {
     flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'space-between',
-    marginVertical: 14,
-    marginHorizontal: 20,
+    paddingHorizontal: 20,
+    marginBottom: 20,
   },
-  headerLeft: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  headerRight: {
+  blueBtn: {
     flexDirection: 'row',
     gap: 8,
   },
@@ -199,6 +184,6 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontWeight: '400',
     color: '#000',
-    width:120
+    width: 120,
   },
 });

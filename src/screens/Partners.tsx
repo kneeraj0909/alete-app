@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet, View, Dimensions, Text, Image} from 'react-native';
 import Video from 'react-native-video';
 import Footer from '../components/Footer';
+import PartnersContent from '../../assets/svg/svgImg/partners-content.svg';
 
 const {width, height} = Dimensions.get('window');
 
@@ -23,7 +24,7 @@ const Partners = () => {
           <Text style={styles.partnerText}>Co-broking arrangement</Text>
           <Text style={styles.partnerText}>with</Text>
         </View>
-        <Image source={require('../../assets/img/howden.png')} />
+        <PartnersContent />
       </View>
       <Footer />
     </View>
@@ -52,6 +53,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
+    left: '50%',
+    top: '50%',
+    transform: [{translateX: -width / 2}, {translateY: -height / 2}],
     width: '100%',
     height: '100%',
   },
@@ -60,10 +64,11 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   partnerText: {
-    color: 'white',
+    fontFamily: 'Inter-VariableFont_opsz,wght',
+    color: '#ffffff',
     fontSize: 15.69,
+    fontWeight: 500,
     lineHeight: 19,
     textAlign: 'center',
-    fontWeight: 500,
   },
 });

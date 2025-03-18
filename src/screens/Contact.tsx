@@ -55,7 +55,11 @@ const Contact = () => {
             multiline
           />
           <View style={styles.button}>
-            <Button text="Send" onPress={handleSubmit} backgroundColor='#0D99FF' />
+            <Button
+              text="Send"
+              onPress={handleSubmit}
+              backgroundColor="#0D99FF"
+            />
           </View>
         </View>
         <View style={styles.PersonDetail}>
@@ -96,20 +100,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   overlay: {
-    padding: 20,
     position: 'absolute',
-    top: 30,
+    top: 10,
   },
   heading: {
     color: 'white',
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
     paddingBottom: 16,
   },
   formContainer: {
     backgroundColor: '#ffffff',
-    padding: 20,
+    padding: 15,
     borderRadius: 4,
     width: width * 0.8,
     shadowColor: '#000',
@@ -128,16 +131,17 @@ const styles = StyleSheet.create({
     color: '#000',
   },
   textArea: {
-    height: 100,
+    height: 80,
     textAlignVertical: 'top',
   },
   button: {
     width: 100,
   },
   PersonDetail: {
-    marginTop: 20,
+    marginTop: 14,
     backgroundColor: '#0073E4',
-    padding: 20,
+    paddingHorizontal: 20,
+    paddingTop:15,
     borderRadius: 4,
     width: width * 0.8,
     shadowColor: '#000',

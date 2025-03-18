@@ -7,13 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {ViewPolicyIcon} from '../../../assets/svg/ViewPolicy';
-import {LeftArrowIcon} from '../../../assets/svg/LeftArrow';
-
-import {
-  NavigationProp,
-  ParamListBase,
-  useNavigation,
-} from '@react-navigation/native';
+import DashboardHeader from '../../components/DashboardHeader';
 
 interface Policy {
   insurerName: string;
@@ -39,16 +33,10 @@ const RowData: React.FC<{label: string; value: string}> = ({label, value}) => (
 );
 
 const UpcomingRenewals: React.FC = () => {
-  const navigation = useNavigation<NavigationProp<ParamListBase>>();
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <View style={styles.headerLeft}>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <LeftArrowIcon />
-          </TouchableOpacity>
-          <Text>Upcoming Renewals</Text>
-        </View>
+        <DashboardHeader title="Upcoming Renewals" />
         <View style={styles.headerRight}>
           {['My Family', 'My Company'].map(item => (
             <TouchableOpacity key={item} style={styles.headerButton}>
@@ -100,13 +88,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginVertical: 14,
-    marginHorizontal: 20,
-  },
-  headerLeft: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+    marginRight: 20,
   },
   headerRight: {
     flexDirection: 'row',
@@ -196,7 +178,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#033381',
     justifyContent: 'center',
     alignItems: 'center',
-    
   },
   renewBtn: {
     fontSize: 12.65,

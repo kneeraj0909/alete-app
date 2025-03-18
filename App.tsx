@@ -12,7 +12,7 @@ import About from './src/screens/About';
 import Partners from './src/screens/Partners';
 import Dashboard from './src/screens/Dashboard';
 import Header from './src/components/Header';
-import {Image, TouchableOpacity} from 'react-native';
+import {TouchableOpacity} from 'react-native';
 import Sidebar from './src/components/Sidebar';
 import {DrawerNavigationProp} from '@react-navigation/drawer';
 import Portfolio from './src/screens/dashboard/Portfolio';
@@ -26,6 +26,7 @@ import UpcomingRenewals from './src/screens/dashboard/UpcomingRenewals';
 import FindAProvider from './src/screens/dashboard/FindAProvider';
 import MyProfile from './src/screens/dashboard/MyProfile';
 import BottomTabBar from './src/components/BottomTabBar';
+import Logo from './assets/svg/svgImg/logo.svg';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -36,11 +37,10 @@ const CustomHeaderRight = (): React.JSX.Element => {
   const navigation = useNavigation<DrawerNavProps>();
 
   return (
-    <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-      <Image
-        source={require('./assets/img/logo.png')}
-        style={{width: 70, height: 30, marginRight: 15}}
-      />
+    <TouchableOpacity
+      style={{marginRight: 10}}
+      onPress={() => navigation.navigate('Home')}>
+      <Logo />
     </TouchableOpacity>
   );
 };
@@ -79,7 +79,7 @@ const TabBarWrapper = () => {
     'HealthWellbeing',
     'Products',
     'Provider',
-    'ComingSoon',
+    'UpcomingRenewals',
     'MyProfile',
   ];
 
@@ -103,7 +103,7 @@ function App(): React.JSX.Element {
         <Stack.Screen name="HealthWellbeing" component={HealthWellbeing} />
         <Stack.Screen name="Products" component={ProductsQuotes} />
         <Stack.Screen name="Provider" component={FindAProvider} />
-        <Stack.Screen name="ComingSoon" component={UpcomingRenewals} />
+        <Stack.Screen name="UpcomingRenewals" component={UpcomingRenewals} />
         <Stack.Screen name="MyProfile" component={MyProfile} />
       </Stack.Navigator>
 
