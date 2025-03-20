@@ -3,19 +3,13 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity,
   ScrollView,
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
-import {LeftArrowIcon} from '../../../assets/svg/LeftArrow';
-import {
-  NavigationProp,
-  ParamListBase,
-  useNavigation,
-} from '@react-navigation/native';
 import {TextInput, Button} from 'react-native-paper';
 import DashboardHeader from '../../components/DashboardHeader';
+import DashboardNavHeader from '../../components/DashboardNavHeader';
 
 const MyProfile: React.FC = () => {
   const [inputFields, setInputFields] = useState({
@@ -49,8 +43,6 @@ const MyProfile: React.FC = () => {
     contactPersonDOB: '',
   });
 
-  const navigation = useNavigation<NavigationProp<ParamListBase>>();
-
   const handleOnChange = (key: string, value: string) => {
     setInputFields(prevState => ({...prevState, [key]: value}));
   };
@@ -61,22 +53,13 @@ const MyProfile: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      {/* Header Section */}
-      {/* <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <LeftArrowIcon />
-        </TouchableOpacity>
-        <Text style={styles.title}>Customer Details</Text>
-      </View> */}
-
-      <DashboardHeader title='Customer Details' />
-
+      <DashboardNavHeader />
+      <DashboardHeader title="Customer Details" />
 
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         style={{flex: 1}}>
         <ScrollView keyboardShouldPersistTaps="handled">
-          {/* Personal Details */}
           <View style={styles.formPart}>
             <TextInput
               label={<Text style={{color: '#033381'}}>Name</Text>}
@@ -290,7 +273,6 @@ const MyProfile: React.FC = () => {
         </ScrollView>
       </KeyboardAvoidingView>
 
-      {/* Save Button */}
       <Button mode="contained" onPress={handleSave} style={styles.saveButton}>
         SAVE CHANGES
       </Button>

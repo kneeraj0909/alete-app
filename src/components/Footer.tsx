@@ -27,16 +27,15 @@ const styles = StyleSheet.create({
     flex: 1,
     position: 'absolute',
     bottom: 0,
-    backgroundColor:'#ffffff'
+    backgroundColor: '#ffffff',
   },
   footerText: {
     fontFamily: 'Inter-VariableFont_opsz,wght',
-    fontSize:8,
+    fontSize: 8,
     color: '#000000',
     textAlign: 'justify',
-    paddingBottom:12,
-    paddingLeft:20,
-    paddingRight:20,
-    paddingTop:15,
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    lineHeight: 12,
   },
 });

@@ -27,11 +27,15 @@ const BottomTabBar: React.FC = () => {
     navigation.navigate('MyProfile');
   };
 
+  const goToHome = () => {
+    navigation.navigate('Dashboard');
+  };
+
   const tabs = [
     {
       icon: <HomeIcon />,
       label: 'Home',
-      onPress: () => console.log('Home clicked'),
+      onPress: () => goToHome(),
     },
     {
       icon: <NotebookIcon />,
@@ -103,8 +107,8 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
-    paddingVertical: 14,
-    paddingHorizontal: 18,
+    paddingVertical: 8,
+    paddingHorizontal: 12,
   },
   bottomBar: {
     alignItems: 'center',

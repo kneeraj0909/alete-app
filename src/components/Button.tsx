@@ -3,8 +3,10 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  Image,
   GestureResponderEvent,
+  View,
+  ViewStyle,
+  TextStyle,
 } from 'react-native';
 
 interface ButtonProps {
@@ -12,10 +14,11 @@ interface ButtonProps {
   onPress: (event: GestureResponderEvent) => void;
   backgroundColor?: string;
   textColor?: string;
-  leftIcon?: any;
-  rightIcon?: any;
-  iconSize?: number;
-  style?: object;
+  leftIcon?: React.ReactNode; 
+  rightIcon?: React.ReactNode;
+  style?: ViewStyle;
+  textStyle?: TextStyle;
+  iconContainerStyle?: ViewStyle;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -25,32 +28,19 @@ const Button: React.FC<ButtonProps> = ({
   textColor = 'white',
   leftIcon,
   rightIcon,
-  iconSize = 20,
   style,
+  textStyle,
+  iconContainerStyle,
 }) => {
   return (
     <TouchableOpacity
-      style={[styles.button, {backgroundColor}, style]}
-      onPress={onPress}>
-      {leftIcon && (
-        <Image
-          source={leftIcon}
-          style={[
-            styles.icon,
-            {width: iconSize, height: iconSize, marginRight: 10},
-          ]}
-        />
-      )}
-      <Text style={[styles.text, {color: textColor}]}>{text}</Text>
-      {rightIcon && (
-        <Image
-          source={rightIcon}
-          style={[
-            styles.icon,
-            {width: iconSize, height: iconSize, marginLeft: 10},
-          ]}
-        />
-      )}
+      style={[styles.button, { backgroundColor }, style]}
+      onPress={onPress}
+      activeOpacity={0.7}
+    >
+      {leftIcon && <View style={[styles.iconContainer, iconContainerStyle]}>{leftIcon}</View>}
+      <Text style={[styles.text, { color: textColor }, textStyle]}>{text}</Text>
+      {rightIcon && <View style={[styles.iconContainer, iconContainerStyle]}>{rightIcon}</View>}
     </TouchableOpacity>
   );
 };
@@ -62,18 +52,19 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 8,
+    paddingVertical: 10,
     paddingHorizontal: 20,
-    shadowOffset: {width: 0, height: 2},
-    shadowOpacity: 0.8,
+    borderRadius: 8,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
     shadowRadius: 2,
   },
   text: {
-    fontSize: 12,
-    fontWeight:500,
+    fontSize: 14,
+    fontWeight: '500',
     fontFamily: 'Inter-VariableFont_opsz,wght',
   },
-  icon: {
-    tintColor: 'white',
+  iconContainer: {
+    marginHorizontal: 5,
   },
 });

@@ -5,6 +5,7 @@ import {
   ImageBackground,
   Dimensions,
   TextInput,
+  ScrollView,
 } from 'react-native';
 import React from 'react';
 import Footer from '../components/Footer';
@@ -29,57 +30,64 @@ const Contact = () => {
       source={require('../../assets/img/contact-banner.png')}
       style={styles.background}
       resizeMode="cover">
-      <View style={styles.overlay}>
+      <View>
         <Text style={styles.heading}>Contact Us</Text>
-        <View style={styles.formContainer}>
-          <TextInput
-            style={styles.input}
-            onChangeText={setName}
-            value={name}
-            placeholder="Name"
-            placeholderTextColor="#888"
-          />
-          <TextInput
-            style={styles.input}
-            onChangeText={setEmail}
-            value={email}
-            placeholder="Email"
-            placeholderTextColor="#888"
-          />
-          <TextInput
-            style={[styles.input, styles.textArea]}
-            onChangeText={setMessage}
-            value={message}
-            placeholder="Your Message"
-            placeholderTextColor="#888"
-            multiline
-          />
-          <View style={styles.button}>
-            <Button
-              text="Send"
-              onPress={handleSubmit}
-              backgroundColor="#0D99FF"
-            />
-          </View>
-        </View>
-        <View style={styles.PersonDetail}>
-          <ContactDetails
-            image={require('../../assets/img/whatsapp-icon.png')}
-            text="Call & Whatsapp"
-            subText="9319 336 336"
-          />
-          <ContactDetails
-            icon={<EmailIcon />}
-            text="email"
-            subText="contact@alete.in"
-          />
-          <ContactDetails
-            icon={<AddressIcon />}
-            text="Corporate Office"
-            subText={
-              'Spring House, Rajsheel, 2nd Floor, Plot 530, \n Sector 27, DLF Phase 4, Gurgaon - 122009.'
-            }
-          />
+        <View style={{flex: 1}}>
+          <ScrollView
+            contentContainerStyle={{flexGrow: 1, paddingBottom: 50}}
+            keyboardShouldPersistTaps="handled">
+            <View style={styles.formContainer}>
+              <TextInput
+                style={styles.input}
+                onChangeText={setName}
+                value={name}
+                placeholder="Name"
+                placeholderTextColor="#888"
+              />
+              <TextInput
+                style={styles.input}
+                onChangeText={setEmail}
+                value={email}
+                placeholder="Email"
+                placeholderTextColor="#888"
+              />
+              <TextInput
+                style={[styles.input, styles.textArea]}
+                onChangeText={setMessage}
+                value={message}
+                placeholder="Your Message"
+                placeholderTextColor="#888"
+                multiline
+              />
+              <View style={styles.button}>
+                <Button
+                  text="Send"
+                  onPress={handleSubmit}
+                  backgroundColor="#0D99FF"
+                  style={{paddingVertical: 6, borderRadius: 0}}
+                />
+              </View>
+            </View>
+            <View style={styles.PersonDetail}>
+              <ContactDetails
+                image={require('../../assets/img/whatsapp-icon.png')}
+                text="Call & Whatsapp"
+                subText="9319 336 336"
+              />
+              <ContactDetails
+                icon={<EmailIcon />}
+                text="email"
+                subText="contact@alete.in"
+              />
+              <ContactDetails
+                icon={<AddressIcon />}
+                text="Corporate Office"
+                subText={
+                  'Spring House, Rajsheel, 2nd Floor, Plot 530, \nSector 27, DLF Phase 4, Gurgaon - 122009.'
+                }
+              />
+            </View>
+          </ScrollView>
         </View>
       </View>
       <View style={styles.footer}>
@@ -99,10 +107,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  overlay: {
-    position: 'absolute',
-    top: 10,
-  },
   heading: {
     color: 'white',
     fontSize: 20,
@@ -112,7 +116,7 @@ const styles = StyleSheet.create({
   },
   formContainer: {
     backgroundColor: '#ffffff',
-    padding: 15,
+    padding: 12,
     borderRadius: 4,
     width: width * 0.8,
     shadowColor: '#000',
@@ -122,7 +126,7 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   input: {
-    height: 40,
+    height: 36,
     marginBottom: 12,
     borderWidth: 1,
     borderColor: '#ccc',
@@ -141,7 +145,7 @@ const styles = StyleSheet.create({
     marginTop: 14,
     backgroundColor: '#0073E4',
     paddingHorizontal: 20,
-    paddingTop:15,
+    paddingTop: 15,
     borderRadius: 4,
     width: width * 0.8,
     shadowColor: '#000',

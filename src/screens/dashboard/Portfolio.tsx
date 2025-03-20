@@ -9,6 +9,7 @@ import {
 import {ViewPolicyIcon} from '../../../assets/svg/ViewPolicy';
 import {PlusSmallIcon} from '../../../assets/svg/PlusSmallIcon';
 import DashboardHeader from '../../components/DashboardHeader';
+import Button from '../../components/Button';
 
 interface Policy {
   insurer: string;
@@ -37,33 +38,40 @@ const PolicyCard: React.FC = () => {
   return (
     <View style={styles.container}>
       <DashboardHeader title="Rajesh Relan" />
-      <View style={styles.buttonsContainer}>
-        <View style={styles.blueBtn}>
-          {['My Family', 'My Company'].map(item => (
-            <TouchableOpacity key={item} style={styles.headerButton}>
-              <Text style={styles.headerButtonText}>{item}</Text>
-            </TouchableOpacity>
-          ))}
-        </View>
-        <View>
-          <TouchableOpacity style={styles.addPolicyButton}>
-            <PlusSmallIcon />
-            <Text style={styles.addPolicyText}>Add Policy</Text>
-          </TouchableOpacity>
-        </View>
+      <View style={styles.buttonsWrapper}>
+        <Button
+          text="My Family"
+          onPress={function (): void {}}
+          style={styles.btnContainer}
+          textStyle={styles.btnText}
+        />
+        <Button
+          text="My Company"
+          onPress={function (): void {}}
+          style={styles.btnContainer}
+          textStyle={styles.btnText}
+        />
+        <Button
+          text="All Policies"
+          onPress={function (): void {}}
+          style={styles.btnContainer}
+          textStyle={styles.btnText}
+        />
+        <Button
+          text="Add Policy"
+          onPress={function (): void {}}
+          style={styles.btnContainer}
+          textStyle={styles.btnText}
+          leftIcon={<PlusSmallIcon pathProps={{fill: '#ffffff'}} />}
+        />
       </View>
-
-      <TouchableOpacity style={styles.viewAllButton}>
-        <Text style={styles.viewAllText}>View All Policies</Text>
-      </TouchableOpacity>
 
       <ScrollView
         style={styles.scrollView}
-        contentContainerStyle={{paddingBottom: 80}}
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps="handled">
-        {policies.map((item, index) => (
-          <View key={index} style={styles.policyContainer}>
+        {policies.map((item, _index) => (
+          <View style={styles.policyContainer} >
             <TouchableOpacity>
               <View style={styles.viewPolicy}>
                 <ViewPolicyIcon />
@@ -88,56 +96,26 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#DEE8F1',
+    borderRadius:14,
+    marginBottom:67
   },
-  buttonsContainer: {
+  buttonsWrapper: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    alignItems: 'center',
+    gap: 8,
     paddingHorizontal: 20,
     marginBottom: 20,
   },
-  blueBtn: {
-    flexDirection: 'row',
-    gap: 8,
-  },
-  headerButton: {
+  btnContainer: {
     backgroundColor: '#033381',
-    borderRadius: 2,
     paddingHorizontal: 12,
-    paddingVertical: 3,
-  },
-  headerButtonText: {
-    fontSize: 8,
-    color: '#ffffff',
-  },
-  addPolicyButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 2,
-    borderWidth: 1,
-    borderColor: '#033381',
+    paddingVertical: 4,
     borderRadius: 2,
-    paddingHorizontal: 4,
-    paddingVertical: 3,
   },
-  addPolicyText: {
+  btnText: {
     fontSize: 8,
-    color: '#033381',
-  },
-  viewAllButton: {
-    borderWidth: 1,
-    borderColor: '#033381',
-    borderRadius: 2,
-    paddingHorizontal: 6,
-    paddingVertical: 3,
-    textAlign: 'center',
-    alignSelf: 'flex-start',
-    marginBottom: 16,
-    lineHeight: 9.74,
-    marginHorizontal: 20,
-  },
-  viewAllText: {
-    fontSize: 8,
-    color: '#033381',
+    fontWeight: 500,
+    fontFamily: 'Inter-VariableFont_opsz,wght',
   },
   scrollView: {
     flex: 1,

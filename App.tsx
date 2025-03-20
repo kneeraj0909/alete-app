@@ -12,7 +12,7 @@ import About from './src/screens/About';
 import Partners from './src/screens/Partners';
 import Dashboard from './src/screens/Dashboard';
 import Header from './src/components/Header';
-import {TouchableOpacity} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
 import Sidebar from './src/components/Sidebar';
 import {DrawerNavigationProp} from '@react-navigation/drawer';
 import Portfolio from './src/screens/dashboard/Portfolio';

@@ -8,6 +8,8 @@ import {
 } from 'react-native';
 import {ViewPolicyIcon} from '../../../assets/svg/ViewPolicy';
 import DashboardHeader from '../../components/DashboardHeader';
+import DashboardNavHeader from '../../components/DashboardNavHeader';
+import Button from '../../components/Button';
 
 interface Policy {
   insurerName: string;
@@ -17,7 +19,7 @@ interface Policy {
   sumInsured: string;
 }
 
-const policies: Policy[] = Array(2).fill({
+const policies: Policy[] = Array(5).fill({
   insurerName: 'Care Health Insurance',
   policyType: 'GGC',
   policyNo: 'Health',
@@ -35,27 +37,39 @@ const RowData: React.FC<{label: string; value: string}> = ({label, value}) => (
 const UpcomingRenewals: React.FC = () => {
   return (
     <View style={styles.container}>
+      <DashboardNavHeader />
       <View style={styles.header}>
         <DashboardHeader title="Upcoming Renewals" />
-        <View style={styles.headerRight}>
-          {['My Family', 'My Company'].map(item => (
-            <TouchableOpacity key={item} style={styles.headerButton}>
-              <Text style={styles.headerButtonText}>{item}</Text>
-            </TouchableOpacity>
-          ))}
+
+        <View style={styles.buttonsWrapper}>
+          <Button
+            text="My Family"
+            onPress={function (): void {}}
+            style={styles.btnContainer}
+            textStyle={styles.btnText}
+          />
+          <Button
+            text="My Company"
+            onPress={function (): void {}}
+            style={styles.btnContainer}
+            textStyle={styles.btnText}
+          />
+          <Button
+            text="All Policies"
+            onPress={function (): void {}}
+            style={styles.btnContainer}
+            textStyle={styles.btnText}
+          />
         </View>
       </View>
-
-      <TouchableOpacity style={styles.viewAllButton}>
-        <Text style={styles.viewAllText}>View All Policies</Text>
-      </TouchableOpacity>
 
       <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
+        contentContainerStyle={{paddingBottom: 80}}
         keyboardShouldPersistTaps="handled">
-        {policies.map((item, index) => (
-          <View key={index} style={styles.policyContainer}>
+        {policies.map((item, _index) => (
+          <View  style={styles.policyContainer}>
             <TouchableOpacity>
               <View style={styles.viewPolicy}>
                 <ViewPolicyIcon />
@@ -85,14 +99,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#DEE8F1',
   },
   header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
     marginRight: 20,
-  },
-  headerRight: {
-    flexDirection: 'row',
-    gap: 8,
   },
   headerButton: {
     backgroundColor: '#033381',
@@ -104,23 +111,25 @@ const styles = StyleSheet.create({
     fontSize: 8,
     color: '#ffffff',
   },
-  addPolicyText: {
-    fontSize: 8,
-    color: '#033381',
+  buttonsWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    paddingHorizontal: 20,
+    marginBottom: 20,
   },
-  viewAllButton: {
-    borderWidth: 1,
-    borderColor: '#033381',
+  btnContainer: {
+    backgroundColor: '#033381',
+    paddingHorizontal: 12,
+    paddingVertical: 4,
     borderRadius: 2,
-    paddingHorizontal: 6,
-    paddingVertical: 3,
-    textAlign: 'center',
-    alignSelf: 'flex-start',
-    marginBottom: 16,
-    lineHeight: 9.74,
-    marginHorizontal: 20,
   },
-  viewAllText: {
+  btnText: {
+    fontSize: 8,
+    fontWeight: 500,
+    fontFamily: 'Inter-VariableFont_opsz,wght',
+  },
+  addPolicyText: {
     fontSize: 8,
     color: '#033381',
   },

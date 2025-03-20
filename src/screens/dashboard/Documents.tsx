@@ -11,6 +11,7 @@ import {DocumentsIcon} from '../../../assets/svg/Documents';
 import {DownArrowIcon} from '../../../assets/svg/DownArrow';
 import {DownloadIcon} from '../../../assets/svg/Download';
 import DashboardHeader from '../../components/DashboardHeader';
+import DashboardNavHeader from '../../components/DashboardNavHeader';
 
 interface dropdownProps {
   dropdownTitle?: string;
@@ -120,6 +121,7 @@ const Documents: React.FC = () => {
 
   return (
     <View style={styles.container}>
+      <DashboardNavHeader />
       <DashboardHeader title="Download Documents" />
       <Dropdown
         dropdownTitle="Policy Documents"
