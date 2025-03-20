@@ -107,8 +107,8 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
-    paddingVertical: 8,
-    paddingHorizontal: 12,
+    paddingVertical: 6,
+    paddingHorizontal: 10,
   },
   bottomBar: {
     alignItems: 'center',
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     lineHeight: 12,
     color: '#000000',
-    paddingTop: 10,
+    paddingTop: 6,
   },
   menuItem: {
     flexDirection: 'row',

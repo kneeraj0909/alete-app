@@ -27,6 +27,7 @@ import FindAProvider from './src/screens/dashboard/FindAProvider';
 import MyProfile from './src/screens/dashboard/MyProfile';
 import BottomTabBar from './src/components/BottomTabBar';
 import Logo from './assets/svg/svgImg/logo.svg';
+import DashboardNavHeader from './src/components/DashboardNavHeader';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -63,7 +64,6 @@ const DrawerNavigator = (): React.JSX.Element => {
   );
 };
 
-// Component to handle BottomTabBar visibility based on the current screen
 const TabBarWrapper = () => {
   const state = useNavigationState(state => state);
 
@@ -88,10 +88,35 @@ const TabBarWrapper = () => {
   ) : null;
 };
 
+const DashboardNavHeaderCom = () => {
+  const state = useNavigationState(state => state);
+
+  const currentRouteName = state?.routes[state?.index]?.name || 'Home';
+
+  const hideBottomTabScreens = [
+    'Dashboard',
+    'Portfolio',
+    'Claims',
+    'Documents',
+    'Servicing',
+    'HealthCard',
+    'HealthWellbeing',
+    'Products',
+    'Provider',
+    'UpcomingRenewals',
+    'MyProfile',
+  ];
+
+  return hideBottomTabScreens.includes(currentRouteName) ? (
+    <DashboardNavHeader />
+  ) : null;
+};
+
 function App(): React.JSX.Element {
   return (
     <NavigationContainer>
       <Header />
+      <DashboardNavHeaderCom />
       <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="DrawerNavigator" component={DrawerNavigator} />
         <Stack.Screen name="Dashboard" component={Dashboard} />

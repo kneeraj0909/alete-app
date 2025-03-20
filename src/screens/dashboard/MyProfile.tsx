@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import {TextInput, Button} from 'react-native-paper';
 import DashboardHeader from '../../components/DashboardHeader';
-import DashboardNavHeader from '../../components/DashboardNavHeader';
 
 const MyProfile: React.FC = () => {
   const [inputFields, setInputFields] = useState({
@@ -53,7 +52,6 @@ const MyProfile: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <DashboardNavHeader />
       <DashboardHeader title="Customer Details" />
 
       <KeyboardAvoidingView

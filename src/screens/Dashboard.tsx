@@ -16,7 +16,6 @@ import {
   useNavigation,
 } from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import DashboardNavHeader from '../components/DashboardNavHeader';
 import {useWindowDimensions} from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 
@@ -147,7 +146,6 @@ export default function Dashboard() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
-        <DashboardNavHeader />
         <View style={styles.videoContainer}>
           <Video
             source={require('../../assets/videos/home-video.mp4')}
@@ -229,8 +227,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   card: {
-    width: 110,
-    height: 90,
+    width: 100,
+    height: 80,
     borderRadius: 10,
     overflow: 'hidden',
     elevation: 5,
@@ -247,7 +245,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: 'Inter-VariableFont_opsz,wght',
-    fontSize: 14,
+    fontSize: 12,
     fontWeight: '700',
     color: '#000000',
     textAlign: 'center',

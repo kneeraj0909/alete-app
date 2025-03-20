@@ -1,11 +1,18 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import Logo from '../../assets/svg/svgImg/logo.svg';
+import {
+  NavigationProp,
+  ParamListBase,
+  useNavigation,
+} from '@react-navigation/native';
 
 const DashboardNavHeader = () => {
+  const navigation = useNavigation<NavigationProp<ParamListBase>>();
+
   return (
     <View style={styles.DashboardNavHeader}>
-      <Logo />
+      <Logo onPress={() => navigation.navigate('Dashboard')} />
     </View>
   );
 };

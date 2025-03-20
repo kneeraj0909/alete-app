@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 import {ViewPolicyIcon} from '../../../assets/svg/ViewPolicy';
 import DashboardHeader from '../../components/DashboardHeader';
-import DashboardNavHeader from '../../components/DashboardNavHeader';
 import Button from '../../components/Button';
 
 interface Policy {
@@ -37,7 +36,6 @@ const RowData: React.FC<{label: string; value: string}> = ({label, value}) => (
 const UpcomingRenewals: React.FC = () => {
   return (
     <View style={styles.container}>
-      <DashboardNavHeader />
       <View style={styles.header}>
         <DashboardHeader title="Upcoming Renewals" />
 
@@ -66,10 +64,10 @@ const UpcomingRenewals: React.FC = () => {
       <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{paddingBottom: 80}}
+        // contentContainerStyle={{paddingBottom: 80}}
         keyboardShouldPersistTaps="handled">
         {policies.map((item, _index) => (
-          <View  style={styles.policyContainer}>
+          <View key={_index} style={styles.policyContainer}>
             <TouchableOpacity>
               <View style={styles.viewPolicy}>
                 <ViewPolicyIcon />
@@ -96,6 +94,7 @@ export default UpcomingRenewals;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    borderRadius: 14,
     backgroundColor: '#DEE8F1',
   },
   header: {

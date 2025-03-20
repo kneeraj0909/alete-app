@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {
   StyleSheet,
   Text,
   View,
   ScrollView,
   TouchableOpacity,
+  Animated,
+  Easing,
 } from 'react-native';
 import {ViewPolicyIcon} from '../../../assets/svg/ViewPolicy';
 import {PlusSmallIcon} from '../../../assets/svg/PlusSmallIcon';
@@ -19,7 +21,7 @@ interface Policy {
   premiumDue: string;
 }
 
-const policies: Policy[] = Array(9).fill({
+const policies: Policy[] = Array(5).fill({
   insurer: 'Care Health Insurance',
   product: 'GGC',
   category: 'Health',
@@ -27,66 +29,143 @@ const policies: Policy[] = Array(9).fill({
   premiumDue: '₹4,19,766.00',
 });
 
-const RowData: React.FC<{label: string; value: string}> = ({label, value}) => (
-  <View style={styles.rowDataContainer}>
+const SkeletonRowData: React.FC = () => {
+  const shimmerAnim = useRef(new Animated.Value(0.3)).current;
+
+  useEffect(() => {
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(shimmerAnim, {
+          toValue: 1,
+          duration: 1000,
+          easing: Easing.linear,
+          useNativeDriver: true,
+        }),
+        Animated.timing(shimmerAnim, {
+          toValue: 0.3,
+          duration: 1000,
+          easing: Easing.linear,
+          useNativeDriver: true,
+        }),
+      ]),
+    ).start();
+  }, []);
+
+  return <Animated.View style={[styles.skeletonRow, {opacity: shimmerAnim}]} />;
+};
+
+const RowData: React.FC<{
+  label: string;
+  value: string;
+  fadeAnim: Animated.Value;
+}> = ({label, value, fadeAnim}) => (
+  <Animated.View style={[styles.rowDataContainer, {opacity: fadeAnim}]}>
     <Text style={styles.label}>{label}</Text>
     <Text style={styles.value}>{value}</Text>
-  </View>
+  </Animated.View>
 );
 
 const PolicyCard: React.FC = () => {
+  const [loading, setLoading] = useState(true);
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+      Animated.timing(fadeAnim, {
+        toValue: 1,
+        duration: 500,
+        useNativeDriver: true,
+      }).start();
+    }, 3000);
+  }, []);
+
   return (
     <View style={styles.container}>
-      <DashboardHeader title="Rajesh Relan" />
-      <View style={styles.buttonsWrapper}>
-        <Button
-          text="My Family"
-          onPress={function (): void {}}
-          style={styles.btnContainer}
-          textStyle={styles.btnText}
-        />
-        <Button
-          text="My Company"
-          onPress={function (): void {}}
-          style={styles.btnContainer}
-          textStyle={styles.btnText}
-        />
-        <Button
-          text="All Policies"
-          onPress={function (): void {}}
-          style={styles.btnContainer}
-          textStyle={styles.btnText}
-        />
-        <Button
-          text="Add Policy"
-          onPress={function (): void {}}
-          style={styles.btnContainer}
-          textStyle={styles.btnText}
-          leftIcon={<PlusSmallIcon pathProps={{fill: '#ffffff'}} />}
-        />
-      </View>
+        <DashboardHeader title="Rajesh Relan" />
+        <View style={styles.buttonsWrapper}>
+          <Button
+            text="My Family"
+            onPress={() => {}}
+            style={styles.btnContainer}
+            textStyle={styles.btnText}
+          />
+          <Button
+            text="My Company"
+            onPress={() => {}}
+            style={styles.btnContainer}
+            textStyle={styles.btnText}
+          />
+          <Button
+            text="All Policies"
+            onPress={() => {}}
+            style={styles.btnContainer}
+            textStyle={styles.btnText}
+          />
+          <Button
+            text="Add Policy"
+            onPress={() => {}}
+            style={styles.btnContainer}
+            textStyle={styles.btnText}
+            leftIcon={<PlusSmallIcon pathProps={{fill: '#ffffff'}} />}
+          />
+        </View>
 
-      <ScrollView
-        style={styles.scrollView}
-        showsVerticalScrollIndicator={false}
-        keyboardShouldPersistTaps="handled">
-        {policies.map((item, _index) => (
-          <View style={styles.policyContainer} >
-            <TouchableOpacity>
-              <View style={styles.viewPolicy}>
-                <ViewPolicyIcon />
-                <Text style={styles.viewPolicyText}>View Policy</Text>
-              </View>
-            </TouchableOpacity>
-            <RowData label="Insurer Name" value={item.insurer} />
-            <RowData label="Product" value={item.product} />
-            <RowData label="Category" value={item.category} />
-            <RowData label="Expiry Date" value={item.expiryDate} />
-            <RowData label="Premium Due" value={item.premiumDue} />
-          </View>
-        ))}
-      </ScrollView>
-    </View>
+        <ScrollView
+          style={styles.scrollView}
+          showsVerticalScrollIndicator={false}
+          // contentContainerStyle={{paddingBottom: 80}}
+          keyboardShouldPersistTaps="handled">
+          {policies.map((item, index) => (
+            <View key={index} style={styles.policyContainer}>
+              <TouchableOpacity>
+                <View style={styles.viewPolicy}>
+                  <ViewPolicyIcon />
+                  <Text style={styles.viewPolicyText}>View Policy</Text>
+                </View>
+              </TouchableOpacity>
+
+              {loading ? (
+                <>
+                  <SkeletonRowData />
+                  <SkeletonRowData />
+                  <SkeletonRowData />
+                  <SkeletonRowData />
+                  <SkeletonRowData />
+                </>
+              ) : (
+                <>
+                  <RowData
+                    label="Insurer Name"
+                    value={item.insurer}
+                    fadeAnim={fadeAnim}
+                  />
+                  <RowData
+                    label="Product"
+                    value={item.product}
+                    fadeAnim={fadeAnim}
+                  />
+                  <RowData
+                    label="Category"
+                    value={item.category}
+                    fadeAnim={fadeAnim}
+                  />
+                  <RowData
+                    label="Expiry Date"
+                    value={item.expiryDate}
+                    fadeAnim={fadeAnim}
+                  />
+                  <RowData
+                    label="Premium Due"
+                    value={item.premiumDue}
+                    fadeAnim={fadeAnim}
+                  />
+                </>
+              )}
+            </View>
+          ))}
+        </ScrollView>
+      </View>
   );
 };
 
@@ -96,8 +175,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#DEE8F1',
-    borderRadius:14,
-    marginBottom:67
+    borderRadius: 14,
   },
   buttonsWrapper: {
     flexDirection: 'row',
@@ -114,7 +192,7 @@ const styles = StyleSheet.create({
   },
   btnText: {
     fontSize: 8,
-    fontWeight: 500,
+    fontWeight: '500',
     fontFamily: 'Inter-VariableFont_opsz,wght',
   },
   scrollView: {
@@ -143,7 +221,7 @@ const styles = StyleSheet.create({
   },
   viewPolicyText: {
     fontSize: 10.61,
-    fontWeight: 400,
+    fontWeight: '400',
     lineHeight: 12.84,
     color: '#033381',
   },
@@ -163,5 +241,11 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     color: '#000',
     width: 120,
+  },
+  skeletonRow: {
+    height: 20,
+    backgroundColor: '#E0E0E0',
+    borderRadius: 5,
+    marginBottom: 16,
   },
 });

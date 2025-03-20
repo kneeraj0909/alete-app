@@ -1,12 +1,44 @@
-import React from 'react';
-import {StyleSheet, View, Dimensions, Text} from 'react-native';
+import React, {useEffect, useRef, useState} from 'react';
+import {
+  StyleSheet,
+  View,
+  Dimensions,
+  Text,
+  Animated,
+  Modal,
+  TouchableWithoutFeedback,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
 import Video from 'react-native-video';
 import Button from '../components/Button';
 import Footer from '../components/Footer';
+import {EyeHideIcon} from '../../assets/svg/EyeHide';
+import {EyeShowIcon} from '../../assets/svg/EyeShow';
 
 const {width, height} = Dimensions.get('window');
 
 const Home = ({navigation}: any) => {
+  const [loginVisible, setLoginVisible] = useState(false);
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+
+  const handleLogin = () => {
+    setLoginVisible(true);
+  };
+
+  useEffect(() => {
+    if (loginVisible) {
+      Animated.timing(fadeAnim, {
+        toValue: 1,
+        duration: 300,
+        useNativeDriver: true,
+      }).start();
+    } else {
+      fadeAnim.setValue(0);
+    }
+  }, [loginVisible]);
+
   return (
     <View style={styles.mainContainer}>
       <View style={styles.container}>
@@ -24,14 +56,53 @@ const Home = ({navigation}: any) => {
         </Text>
 
         <View style={styles.buttonContainer}>
-          <Button
-            text="Client Login"
-            onPress={() => navigation.navigate('Dashboard')}
-          />
+          <Button text="Client Login" onPress={handleLogin} />
         </View>
       </View>
 
       <Footer />
+
+      <Modal transparent visible={loginVisible} animationType="fade">
+        <TouchableWithoutFeedback onPress={() => setLoginVisible(false)}>
+          <View style={styles.modalBackground}>
+            <Animated.View style={[styles.loginCard, {opacity: fadeAnim}]}>
+              <Text style={styles.modalTitle}>Welcome Back!</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="Email/Phone"
+                placeholderTextColor="#1E1E1E99"
+              />
+              <View style={styles.passwordEyePart}>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Password/OTP"
+                  placeholderTextColor="#1E1E1E99"
+                  secureTextEntry={!passwordVisible}
+                />
+                <TouchableOpacity
+                  style={styles.eyeIcon}
+                  onPress={() => setPasswordVisible(!passwordVisible)}>
+                  {passwordVisible ? <EyeShowIcon /> : <EyeHideIcon />}
+                </TouchableOpacity>
+              </View>
+              <View style={styles.btncontainer}>
+                <Button
+                  text="LOG IN"
+                  onPress={() => navigation.navigate('Dashboard')}
+                  textStyle={{color: '#ffffff', fontSize: 9, fontWeight: 400}}
+                  style={{
+                    width: '50%',
+                    backgroundColor: '#033381',
+                    marginTop: 15,
+                    borderRadius: 3,
+                  }}
+                />
+                <Text style={styles.sendOtpText}>Resend OTP</Text>
+              </View>
+            </Animated.View>
+          </View>
+        </TouchableWithoutFeedback>
+      </Modal>
     </View>
   );
 };
@@ -66,5 +137,59 @@ const styles = StyleSheet.create({
     marginTop: height * 0.05,
     backgroundColor: '#41B749',
     borderRadius: 2,
+  },
+  modalBackground: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.5)',
+  },
+  loginCard: {
+    width: '90%',
+    padding: 20,
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  modalTitle: {
+    fontSize: 16,
+    fontFamily: 'OpenSans-VariableFont_wdth,wght',
+    fontWeight: 'bold',
+    marginBottom: 15,
+    color: '#033381',
+  },
+  passwordEyePart: {
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  input: {
+    width: '100%',
+    height: 40,
+    borderBottomWidth: 1,
+    paddingHorizontal: 10,
+    marginBottom: 10,
+    borderColor: '#000000',
+  },
+  eyeIcon: {
+    position: 'absolute',
+    right: 10,
+    paddingBottom: 10,
+  },
+  btncontainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  sendOtpText: {
+    paddingTop:10,
+    fontSize: 10,
+    fontFamily: 'OpenSans-VariableFont_wdth,wght',
+    fontWeight: 400,
+    color: '#0073E4',
   },
 });
