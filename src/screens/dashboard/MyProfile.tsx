@@ -287,7 +287,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 16,
-    fontWeight: '700',
+    fontWeight: 700,
+    fontFamily: 'Inter-VariableFont_opsz,wght',
     color: '#525056',
   },
   formPart: {
@@ -307,7 +308,8 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 14,
-    fontWeight: 'bold',
+    fontWeight: 700,
+    fontFamily: 'Inter-VariableFont_opsz,wght',
     marginHorizontal: 24,
     marginBottom: 8,
     color: '#525056',

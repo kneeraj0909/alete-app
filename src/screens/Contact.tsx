@@ -108,9 +108,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   heading: {
+    fontSize: 18,
+    fontWeight: '700',
+    fontFamily: 'PlayfairDisplay-VariableFont_wght',
     color: 'white',
-    fontSize: 20,
-    fontWeight: 'bold',
     textAlign: 'center',
     paddingBottom: 16,
   },
@@ -126,16 +127,16 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   input: {
-    height: 36,
     marginBottom: 12,
     borderWidth: 1,
     borderColor: '#ccc',
-    padding: 10,
+    paddingLeft:10,
     borderRadius: 5,
     color: '#000',
+    height: 40,
   },
   textArea: {
-    height: 80,
+    height: 70,
     textAlignVertical: 'top',
   },
   button: {
@@ -153,6 +154,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 4,
     elevation: 5,
+    marginBottom:10
   },
   footer: {
     width: '100%',

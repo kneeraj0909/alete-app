@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   partnerText: {
     fontFamily: 'Inter-VariableFont_opsz,wght',
     color: '#ffffff',
-    fontSize: 15.69,
+    fontSize: 16,
     fontWeight: 500,
     lineHeight: 19,
     textAlign: 'center',

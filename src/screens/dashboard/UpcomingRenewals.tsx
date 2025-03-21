@@ -94,8 +94,9 @@ export default UpcomingRenewals;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    borderRadius: 14,
     backgroundColor: '#DEE8F1',
+    borderRadius: 14,
+    marginBottom: 58,
   },
   header: {
     marginRight: 20,
@@ -105,10 +106,6 @@ const styles = StyleSheet.create({
     borderRadius: 2,
     paddingHorizontal: 12,
     paddingVertical: 3,
-  },
-  headerButtonText: {
-    fontSize: 8,
-    color: '#ffffff',
   },
   buttonsWrapper: {
     flexDirection: 'row',
@@ -127,10 +124,6 @@ const styles = StyleSheet.create({
     fontSize: 8,
     fontWeight: 500,
     fontFamily: 'Inter-VariableFont_opsz,wght',
-  },
-  addPolicyText: {
-    fontSize: 8,
-    color: '#033381',
   },
   scrollView: {
     flex: 1,
@@ -157,9 +150,10 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
   },
   viewPolicyText: {
-    fontSize: 10.61,
+    fontSize: 11,
     fontWeight: 400,
-    lineHeight: 12.84,
+    fontFamily: 'Inter-VariableFont_opsz,wght',
+    lineHeight: 13,
     color: '#033381',
   },
   rowDataContainer: {
@@ -169,13 +163,15 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 13,
-    fontWeight: '500',
+    fontWeight: 500,
+    fontFamily: 'Inter-VariableFont_opsz,wght',
     color: '#033381',
     width: 200,
   },
   value: {
     fontSize: 13,
-    fontWeight: '400',
+    fontWeight: 400,
+    fontFamily: 'Inter-VariableFont_opsz,wght',
     color: '#000',
     width: 120,
   },
@@ -188,8 +184,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   renewBtn: {
-    fontSize: 12.65,
+    fontSize: 13,
     fontWeight: 500,
+    fontFamily: 'Inter-VariableFont_opsz,wght',
     color: '#D4DCE9',
   },
 });

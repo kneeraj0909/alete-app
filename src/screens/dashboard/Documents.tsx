@@ -164,6 +164,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#DEE8F1',
+    borderRadius: 14,
+    marginBottom:58
   },
   dropdown: {
     flexDirection: 'row',
@@ -177,7 +179,8 @@ const styles = StyleSheet.create({
   },
   dropdownText: {
     fontSize: 12,
-    fontWeight: '400',
+    fontWeight: 400,
+    fontFamily: 'Inter-VariableFont_opsz,wght',
     color: '#000000',
   },
   subDropdownContainer: {

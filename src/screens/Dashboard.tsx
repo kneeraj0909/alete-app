@@ -246,7 +246,7 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: 'Inter-VariableFont_opsz,wght',
     fontSize: 12,
-    fontWeight: '700',
+    fontWeight: 700,
     color: '#000000',
     textAlign: 'center',
   },
@@ -259,7 +259,8 @@ const styles = StyleSheet.create({
     width: '40%',
     height: 100,
     fontSize: 12,
-    fontWeight: 'bold',
+    fontWeight: 700,
+    fontFamily: 'Inter-VariableFont_opsz,wght',
     color: '#ffffff',
     textAlign: 'justify',
     lineHeight: 16,

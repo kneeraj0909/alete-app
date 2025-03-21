@@ -176,6 +176,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#DEE8F1',
     borderRadius: 14,
+    marginBottom:58
   },
   buttonsWrapper: {
     flexDirection: 'row',
@@ -192,7 +193,7 @@ const styles = StyleSheet.create({
   },
   btnText: {
     fontSize: 8,
-    fontWeight: '500',
+    fontWeight: 500,
     fontFamily: 'Inter-VariableFont_opsz,wght',
   },
   scrollView: {
@@ -220,9 +221,10 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
   },
   viewPolicyText: {
-    fontSize: 10.61,
-    fontWeight: '400',
-    lineHeight: 12.84,
+    fontSize: 11,
+    fontWeight: 400,
+    fontFamily: 'Inter-VariableFont_opsz,wght',
+    lineHeight: 13,
     color: '#033381',
   },
   rowDataContainer: {
@@ -231,14 +233,16 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   label: {
-    fontSize: 13,
-    fontWeight: '500',
-    color: '#033381',
     width: 200,
+    fontSize: 13,
+    fontWeight: 500,
+    fontFamily: 'Inter-VariableFont_opsz,wght',
+    color: '#033381',
   },
   value: {
     fontSize: 13,
-    fontWeight: '400',
+    fontWeight: 400,
+    fontFamily: 'Inter-VariableFont_opsz,wght',
     color: '#000',
     width: 120,
   },

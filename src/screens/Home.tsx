@@ -89,7 +89,7 @@ const Home = ({navigation}: any) => {
                 <Button
                   text="LOG IN"
                   onPress={() => navigation.navigate('Dashboard')}
-                  textStyle={{color: '#ffffff', fontSize: 9, fontWeight: 400}}
+                  textStyle={styles.loginBtn}
                   style={{
                     width: '50%',
                     backgroundColor: '#033381',
@@ -125,12 +125,12 @@ const styles = StyleSheet.create({
     height: height,
   },
   homeText: {
-    fontFamily: 'PlayfairDisplay-VariableFont_wght',
-    color: 'white',
     fontSize: 24,
+    fontWeight: 600,
+    fontFamily: 'PlayfairDisplay-VariableFont_wght',
     lineHeight: 36,
+    color: '#ffffff',
     textAlign: 'center',
-    fontWeight: '600',
     paddingHorizontal: 40,
   },
   buttonContainer: {
@@ -157,8 +157,8 @@ const styles = StyleSheet.create({
   },
   modalTitle: {
     fontSize: 16,
+    fontWeight: 600,
     fontFamily: 'OpenSans-VariableFont_wdth,wght',
-    fontWeight: 'bold',
     marginBottom: 15,
     color: '#033381',
   },
@@ -186,10 +186,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   sendOtpText: {
-    paddingTop:10,
     fontSize: 10,
-    fontFamily: 'OpenSans-VariableFont_wdth,wght',
     fontWeight: 400,
+    fontFamily: 'OpenSans-VariableFont_wdth,wght',
     color: '#0073E4',
+    paddingTop: 10,
+  },
+  loginBtn: {
+    fontSize: 9,
+    fontWeight: 400,
+    fontFamily: 'OpenSans-VariableFont_wdth,wght',
+    color: '#ffffff',
   },
 });

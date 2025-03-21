@@ -30,8 +30,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
   },
   footerText: {
-    fontFamily: 'Inter-VariableFont_opsz,wght',
     fontSize: 8,
+    fontWeight:500,
+    fontFamily: 'Inter-VariableFont_opsz,wght',
     color: '#000000',
     textAlign: 'justify',
     paddingVertical: 8,

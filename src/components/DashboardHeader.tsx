@@ -1,4 +1,10 @@
-import {StyleSheet, Text, TouchableOpacity, View, ViewStyle} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  ViewStyle,
+} from 'react-native';
 import React from 'react';
 import {LeftArrowIcon} from '../../assets/svg/LeftArrow';
 import {
@@ -9,10 +15,10 @@ import {
 
 interface DashboardHeaderProps {
   title: string;
-  style?: ViewStyle
+  style?: ViewStyle;
 }
 
-const DashboardHeader = ({title,style}: DashboardHeaderProps) => {
+const DashboardHeader = ({title, style}: DashboardHeaderProps) => {
   const navigation = useNavigation<NavigationProp<ParamListBase>>();
   return (
     <View style={[styles.header, style]}>
@@ -20,7 +26,7 @@ const DashboardHeader = ({title,style}: DashboardHeaderProps) => {
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <LeftArrowIcon />
         </TouchableOpacity>
-        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.title}>{title} neeraj</Text>
       </View>
     </View>
   );
@@ -43,6 +49,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 16,
+    fontFamily: 'Inter-VariableFont_opsz,wght',
     fontWeight: 700,
     color: '#525056',
   },

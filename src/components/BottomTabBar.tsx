@@ -115,7 +115,8 @@ const styles = StyleSheet.create({
   },
   bottomBarText: {
     fontSize: 10,
-    fontWeight: '700',
+    fontFamily:'InriaSerif-Regular',
+    fontWeight: 700,
     lineHeight: 12,
     color: '#000000',
     paddingTop: 6,
@@ -129,7 +130,7 @@ const styles = StyleSheet.create({
   },
   menuText: {
     fontSize: 14,
-    fontWeight: '600',
+    fontWeight: 600,
     color: '#333',
   },
 });

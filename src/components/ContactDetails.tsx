@@ -41,8 +41,8 @@ const styles = StyleSheet.create({
   },
   text: {
     fontFamily: 'Inter-VariableFont_opsz,wght',
-    fontSize: 14,
-    fontWeight: '400',
+    fontSize: 12,
+    fontWeight: 400,
     lineHeight: 10,
     color: '#ffffff',
     paddingBottom: 6,
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   subText: {
     fontFamily: 'Inter-VariableFont_opsz,wght',
     fontSize: 10,
-    fontWeight: '400',
+    fontWeight: 400,
     lineHeight: 10,
     color: '#ffffff',
   },

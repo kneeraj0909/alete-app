@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
   headerText: {
     fontSize: 12,
     fontWeight: 400,
+    fontFamily: 'Inter-VariableFont_opsz,wght',
     lineHeight: 14.52,
     color:'#ffffff',
     textAlign:'center'

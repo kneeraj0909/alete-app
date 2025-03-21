@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 14,
-    fontWeight: '500',
+    fontWeight: 500,
     fontFamily: 'Inter-VariableFont_opsz,wght',
   },
   iconContainer: {
