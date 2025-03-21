@@ -26,7 +26,7 @@ const DashboardHeader = ({title, style}: DashboardHeaderProps) => {
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <LeftArrowIcon />
         </TouchableOpacity>
-        <Text style={styles.title}>{title} neeraj</Text>
+        <Text style={styles.title}>{title}</Text>
       </View>
     </View>
   );
