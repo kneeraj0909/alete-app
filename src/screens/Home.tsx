@@ -15,6 +15,7 @@ import Button from '../components/Button';
 import Footer from '../components/Footer';
 import {EyeHideIcon} from '../../assets/svg/EyeHide';
 import {EyeShowIcon} from '../../assets/svg/EyeShow';
+import axios from 'axios';
 
 const {width, height} = Dimensions.get('window');
 
@@ -22,6 +23,48 @@ const Home = ({navigation}: any) => {
   const [loginVisible, setLoginVisible] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
   const fadeAnim = useRef(new Animated.Value(0)).current;
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [otp, setOtp] = useState('');
+  const [generatedOtp, setGeneratedOtp] = useState<string | null>(null);
+  const [userData, setUserData] = useState<any[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [loginError, setLoginError] = useState<string | null>(null);
+  
+
+  useEffect(() => {
+    const fetchMetabaseData = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.post(
+          'http://65.0.155.177:3000/api/card/354/query',
+          {},
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              'X-Metabase-Session': '85e5ed6f-5158-4285-af29-44a565fd48ed',
+            },
+          },
+        );
+
+        if (response.data.data && response.data.data.rows) {
+          setUserData(response.data.data.rows);
+        } else {
+          console.warn('No data found:', response.data);
+        }
+      } catch (error) {
+        console.error('Error fetching:', error);
+        setLoginError('Failed to fetch data');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMetabaseData();
+  }, []);
+
+
+
+  
 
   const handleLogin = () => {
     setLoginVisible(true);
@@ -38,6 +81,12 @@ const Home = ({navigation}: any) => {
       fadeAnim.setValue(0);
     }
   }, [loginVisible]);
+
+
+console.log("userData",userData)
+
+
+
 
   return (
     <View style={styles.mainContainer}>

@@ -12,6 +12,8 @@ import {ViewPolicyIcon} from '../../../assets/svg/ViewPolicy';
 import {PlusSmallIcon} from '../../../assets/svg/PlusSmallIcon';
 import DashboardHeader from '../../components/DashboardHeader';
 import Button from '../../components/Button';
+import axios from 'axios';
+
 
 interface Policy {
   insurer: string;
@@ -68,6 +70,10 @@ const RowData: React.FC<{
 const PolicyCard: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const fadeAnim = useRef(new Animated.Value(0)).current;
+  const [portfolioData, setPortfolioData] = useState<any[]>([]);
+  const [portfolioLoading, setPortfolioLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
 
   useEffect(() => {
     setTimeout(() => {
@@ -79,6 +85,40 @@ const PolicyCard: React.FC = () => {
       }).start();
     }, 3000);
   }, []);
+
+
+  useEffect(() => {
+    const fetchMetabaseData = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.post(
+          'http://65.0.155.177:3000/api/card/327/query',
+          {},
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              'X-Metabase-Session': '18198cd8-5f20-4e3a-baed-844a449b42ff',
+            },
+          },
+        );
+
+        if (response.data.data && response.data.data.rows) {
+          setPortfolioData(response.data.data.rows);
+        } else {
+          console.warn('No data found:', response.data);
+        }
+      } catch (error) {
+        console.error('Error fetching:', error);
+        setError('Failed to fetch data');
+      } finally {
+        setPortfolioLoading(false);
+      }
+    };
+
+    fetchMetabaseData();
+  }, []);
+
+  console.log("portfolioData",portfolioData)
 
   return (
     <View style={styles.container}>
