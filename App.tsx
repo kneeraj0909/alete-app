@@ -28,6 +28,7 @@ import MyProfile from './src/screens/dashboard/MyProfile';
 import BottomTabBar from './src/components/BottomTabBar';
 import Logo from './assets/svg/svgImg/logo.svg';
 import DashboardNavHeader from './src/components/DashboardNavHeader';
+import {ToastProvider} from 'react-native-toast-notifications';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -48,19 +49,21 @@ const CustomHeaderRight = (): React.JSX.Element => {
 
 const DrawerNavigator = (): React.JSX.Element => {
   return (
-    <Drawer.Navigator
-      drawerContent={props => <Sidebar {...props} />}
-      screenOptions={{
-        headerTintColor: '#0D99FF',
-        drawerActiveTintColor: '#0047AB',
-        drawerInactiveTintColor: '#000',
-        headerRight: () => <CustomHeaderRight />,
-      }}>
-      <Drawer.Screen name="Home" component={Home} />
-      <Drawer.Screen name="About" component={About} />
-      <Drawer.Screen name="Partners" component={Partners} />
-      <Drawer.Screen name="Contact" component={Contact} />
-    </Drawer.Navigator>
+    <ToastProvider placement='top'>
+      <Drawer.Navigator
+        drawerContent={props => <Sidebar {...props} />}
+        screenOptions={{
+          headerTintColor: '#0D99FF',
+          drawerActiveTintColor: '#0047AB',
+          drawerInactiveTintColor: '#000',
+          headerRight: () => <CustomHeaderRight />,
+        }}>
+        <Drawer.Screen name="Home" component={Home} />
+        <Drawer.Screen name="About" component={About} />
+        <Drawer.Screen name="Partners" component={Partners} />
+        <Drawer.Screen name="Contact" component={Contact} />
+      </Drawer.Navigator>
+    </ToastProvider>
   );
 };
 
