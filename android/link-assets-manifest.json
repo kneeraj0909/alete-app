@@ -1,0 +1,17 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/Inter-VariableFont_opsz,wght.ttf",
+      "sha1": "ee5c2e22ffeddefc433c9aa4c76779bb73a5c682"
+    },
+    {
+      "path": "assets/fonts/NotoSansJP-VariableFont_wght.ttf",
+      "sha1": "0930b9b13e368fdd7f3285fc7123e8f1a1cfcf75"
+    },
+    {
+      "path": "assets/fonts/PlayfairDisplay-VariableFont_wght.ttf",
+      "sha1": "2fcb048a917b7607887df262ee3742a50264c764"
+    }
+  ]
+}
