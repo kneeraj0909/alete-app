@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Animated,
   Easing,
+  SafeAreaView,
 } from 'react-native';
 import {ViewPolicyIcon} from '../../../assets/svg/ViewPolicy';
 import {PlusSmallIcon} from '../../../assets/svg/PlusSmallIcon';
@@ -92,7 +93,7 @@ const Portfolio: React.FC<PortfolioProps> = ({navigation, route}) => {
 
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <DashboardHeader title="Rajesh Relan" />
       <View style={styles.buttonsWrapper}>
         <Button
@@ -174,7 +175,7 @@ const Portfolio: React.FC<PortfolioProps> = ({navigation, route}) => {
           <Text>No policies found</Text>
         )}
       </ScrollView> */}
-    </View>
+    </SafeAreaView>
   );
 };
 

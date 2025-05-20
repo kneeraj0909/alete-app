@@ -144,66 +144,60 @@ export default function Dashboard() {
   );
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
-        <View style={styles.videoContainer}>
-          <Video
-            source={require('../../assets/videos/home-video.mp4')}
-            style={styles.video}
-            repeat
-            resizeMode="cover"
-          />
-          <View
-            style={{
-              position: 'absolute',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-            <Carousel
-              ref={carouselRef}
-              data={SlidedataSource}
-              renderItem={renderItem}
-              sliderWidth={width}
-              itemWidth={width}
-              inactiveSlideScale={1}
-              inactiveSlideOpacity={1}
-              autoplay
-              loop
-              autoplayInterval={15000}
-              autoplayDelay={4000}
-              vertical={false}
-            />
-          </View>
-        </View>
-
-        <FlatList
-          style={{flex: 1}}
-          data={images}
-          keyExtractor={item => item.id}
-          numColumns={numColumns}
-          renderItem={({item}) => (
-            <CardImage
-              imageUri={item.uri}
-              title={item.cartTitle}
-              onPress={() => navigation.navigate(item.route)}
-            />
-          )}
-          getItemLayout={(data, index) => ({
-            length: cardSize,
-            offset: cardSize * index,
-            index,
-          })}
+    <SafeAreaView style={styles.container}>
+      <View style={styles.videoContainer}>
+        <Video
+          source={require('../../assets/videos/home-video.mp4')}
+          style={styles.video}
+          repeat
+          resizeMode="cover"
         />
+        <View
+          style={{
+            position: 'absolute',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          <Carousel
+            ref={carouselRef}
+            data={SlidedataSource}
+            renderItem={renderItem}
+            sliderWidth={width}
+            itemWidth={width}
+            inactiveSlideScale={1}
+            inactiveSlideOpacity={1}
+            autoplay
+            loop
+            autoplayInterval={15000}
+            autoplayDelay={4000}
+            vertical={false}
+          />
+        </View>
       </View>
+
+      <FlatList
+        style={{flex: 1}}
+        data={images}
+        keyExtractor={item => item.id}
+        numColumns={numColumns}
+        renderItem={({item}) => (
+          <CardImage
+            imageUri={item.uri}
+            title={item.cartTitle}
+            onPress={() => navigation.navigate(item.route)}
+          />
+        )}
+        getItemLayout={(data, index) => ({
+          length: cardSize,
+          offset: cardSize * index,
+          index,
+        })}
+      />
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: '#ffffff',
-  },
   container: {
     flex: 1,
     alignItems: 'stretch',

@@ -1,5 +1,12 @@
 import React from 'react';
-import {StyleSheet, View, Dimensions, Text, Image} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Dimensions,
+  Text,
+  Image,
+  SafeAreaView,
+} from 'react-native';
 import Video from 'react-native-video';
 import Footer from '../components/Footer';
 import PartnersContent from '../../assets/svg/svgImg/partners-content.svg';
@@ -8,8 +15,8 @@ const {width, height} = Dimensions.get('window');
 
 const Partners = () => {
   return (
-    <View style={styles.mainContainer}>
-      <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.wrapper}>
         <Video
           source={require('../../assets/videos/home-video.mp4')}
           style={styles.video}
@@ -27,17 +34,17 @@ const Partners = () => {
         <PartnersContent />
       </View>
       <Footer />
-    </View>
+    </SafeAreaView>
   );
 };
 
 export default Partners;
 
 const styles = StyleSheet.create({
-  mainContainer: {
+  container: {
     flex: 1,
   },
-  container: {
+  wrapper: {
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',

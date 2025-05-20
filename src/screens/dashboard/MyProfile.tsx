@@ -6,6 +6,7 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   Platform,
+  SafeAreaView,
 } from 'react-native';
 import {TextInput, Button} from 'react-native-paper';
 import DashboardHeader from '../../components/DashboardHeader';
@@ -51,7 +52,7 @@ const MyProfile: React.FC = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <DashboardHeader title="Customer Details" />
 
       <KeyboardAvoidingView
@@ -274,7 +275,7 @@ const MyProfile: React.FC = () => {
       <Button mode="contained" onPress={handleSave} style={styles.saveButton}>
         SAVE CHANGES
       </Button>
-    </View>
+    </SafeAreaView>
   );
 };
 

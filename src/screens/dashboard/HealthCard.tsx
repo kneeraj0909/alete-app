@@ -1,13 +1,13 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {SafeAreaView, StyleSheet, View} from 'react-native';
 
 import DashboardHeader from '../../components/DashboardHeader';
 
 const HealthCard: React.FC = () => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <DashboardHeader title="Health Card" />
-    </View>
+    </SafeAreaView>
   );
 };
 

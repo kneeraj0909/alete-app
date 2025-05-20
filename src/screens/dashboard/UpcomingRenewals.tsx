@@ -5,6 +5,7 @@ import {
   View,
   ScrollView,
   TouchableOpacity,
+  SafeAreaView,
 } from 'react-native';
 import {ViewPolicyIcon} from '../../../assets/svg/ViewPolicy';
 import DashboardHeader from '../../components/DashboardHeader';
@@ -35,7 +36,7 @@ const RowData: React.FC<{label: string; value: string}> = ({label, value}) => (
 
 const UpcomingRenewals: React.FC = () => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <DashboardHeader title="Upcoming Renewals" />
 
@@ -85,7 +86,7 @@ const UpcomingRenewals: React.FC = () => {
           </View>
         ))}
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 };
 

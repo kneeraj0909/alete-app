@@ -9,6 +9,7 @@ import {
   TouchableWithoutFeedback,
   TextInput,
   TouchableOpacity,
+  SafeAreaView,
 } from 'react-native';
 import Video from 'react-native-video';
 import Button from '../components/Button';
@@ -39,8 +40,6 @@ const Home = ({navigation}: {navigation: any}) => {
 
   const toast = useToast();
   const {userData} = useSelector((state: RootState) => state.loginData);
-
-  console.log('userData: ', userData);
 
   // ============================ fetching data ===========================
   useEffect(() => {
@@ -118,9 +117,6 @@ const Home = ({navigation}: {navigation: any}) => {
     const authKey = '450817AzWtuhCt29682488e8P1';
     const templateId = '681c938bd6fc0552405d6652';
     const otpValue = Math.floor(100000 + Math.random() * 900000);
-
-
-
 
     try {
       const response = await axios.post(
@@ -257,8 +253,8 @@ const Home = ({navigation}: {navigation: any}) => {
   };
 
   return (
-    <View style={styles.mainContainer}>
-      <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.wrapper}>
         <Video
           source={require('../../assets/videos/home-video.mp4')}
           style={styles.video}
@@ -343,17 +339,17 @@ const Home = ({navigation}: {navigation: any}) => {
           </View>
         </TouchableWithoutFeedback>
       </Modal>
-    </View>
+    </SafeAreaView>
   );
 };
 
 export default Home;
 
 const styles = StyleSheet.create({
-  mainContainer: {
+  container: {
     flex: 1,
   },
-  container: {
+  wrapper: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',

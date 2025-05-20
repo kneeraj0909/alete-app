@@ -4,6 +4,7 @@ import {
   View,
   ImageBackground,
   Dimensions,
+  SafeAreaView,
 } from 'react-native';
 import React from 'react';
 import Footer from '../components/Footer';
@@ -12,6 +13,7 @@ const {width, height} = Dimensions.get('window');
 
 const About = () => {
   return (
+    <SafeAreaView style={styles.container}>
     <ImageBackground
       source={require('../../assets/img/aboutbg.png')}
       style={styles.background}
@@ -48,12 +50,16 @@ const About = () => {
         <Footer />
       </View>
     </ImageBackground>
+    </SafeAreaView>
   );
 };
 
 export default About;
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   background: {
     flex: 1,
     width: width,
